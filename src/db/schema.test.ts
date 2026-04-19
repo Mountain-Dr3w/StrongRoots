@@ -110,3 +110,58 @@ describe("schema: orders + entitlements", () => {
     expect(ent.revokedAt).toBeNull();
   });
 });
+
+describe("schema: scheduling", () => {
+  it("round-trips an availability rule and a booking with intake", async () => {
+    await db.insert(schema.availabilityRules).values({
+      dayOfWeek: 1,
+      startTime: "09:00",
+      endTime: "17:00",
+      timezone: "America/New_York",
+    });
+
+    const [user] = await db
+      .insert(schema.users)
+      .values({ email: "booker@example.com" })
+      .returning();
+
+    const [product] = await db
+      .insert(schema.products)
+      .values({
+        slug: "sched-test",
+        type: "consulting",
+        name: "Sched Test",
+        priceCents: 10000,
+        stripePriceId: "price_sched_test",
+      })
+      .returning();
+
+    const [offering] = await db
+      .insert(schema.consultingOfferings)
+      .values({ productId: product.id, durationMinutes: 60 })
+      .returning();
+
+    const [booking] = await db
+      .insert(schema.bookings)
+      .values({
+        userId: user.id,
+        offeringId: offering.id,
+        startAt: new Date("2026-06-01T13:00:00Z"),
+        endAt: new Date("2026-06-01T14:00:00Z"),
+        status: "confirmed",
+      })
+      .returning();
+
+    const [intake] = await db
+      .insert(schema.intakeForms)
+      .values({
+        bookingId: booking.id,
+        answers: { goals: "build strength", injuries: "none" },
+        submittedAt: new Date(),
+      })
+      .returning();
+
+    expect(booking.status).toBe("confirmed");
+    expect(intake.answers).toMatchObject({ goals: "build strength" });
+  });
+});
