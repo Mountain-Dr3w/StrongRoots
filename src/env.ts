@@ -22,7 +22,15 @@ const EnvSchema = z.object({
   CONTENT_STORAGE_DIR: z.string().default("./content-storage"),
 });
 
-const parsed = EnvSchema.safeParse(process.env);
+// Skip validation during `next build` inside Docker: Velveteen injects real
+// env vars only at `docker run`, so DATABASE_URL is absent during the build's
+// page-data collection pass.
+const skipValidation = process.env.SKIP_ENV_VALIDATION === "true";
+
+const parsed = skipValidation
+  ? { success: true as const, data: process.env as unknown as z.infer<typeof EnvSchema> }
+  : EnvSchema.safeParse(process.env);
+
 if (!parsed.success) {
   console.error("Invalid environment variables:", parsed.error.flatten().fieldErrors);
   throw new Error("Invalid environment");
