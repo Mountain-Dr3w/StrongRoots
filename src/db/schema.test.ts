@@ -165,3 +165,51 @@ describe("schema: scheduling", () => {
     expect(intake.answers).toMatchObject({ goals: "build strength" });
   });
 });
+
+describe("schema: content + email", () => {
+  it("round-trips a content asset for a plan", async () => {
+    const [product] = await db
+      .insert(schema.products)
+      .values({
+        slug: "content-test",
+        type: "plan",
+        name: "Content Test",
+        priceCents: 5000,
+        stripePriceId: "price_content_test",
+      })
+      .returning();
+
+    const [plan] = await db
+      .insert(schema.plans)
+      .values({ productId: product.id, weeks: 8, level: "intermediate" })
+      .returning();
+
+    const [asset] = await db
+      .insert(schema.contentAssets)
+      .values({
+        planId: plan.id,
+        storageKey: "plans/content-test/week-1.pdf",
+        mime: "application/pdf",
+        displayName: "Week 1 Overview",
+        order: 0,
+      })
+      .returning();
+
+    expect(asset.planId).toBe(plan.id);
+    expect(asset.order).toBe(0);
+  });
+
+  it("records an email log entry", async () => {
+    const [log] = await db
+      .insert(schema.emailLog)
+      .values({
+        to: "user@example.com",
+        template: "receipt",
+        stripeEventId: "evt_test_receipt_1",
+      })
+      .returning();
+
+    expect(log.template).toBe("receipt");
+    expect(log.sentAt).toBeInstanceOf(Date);
+  });
+});
