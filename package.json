@@ -10,7 +10,7 @@
     "db:up": "docker compose -f docker-compose.dev.yml up -d && docker compose -f docker-compose.dev.yml exec -T postgres sh -c 'until pg_isready -U ashlyn; do sleep 0.5; done'",
     "db:down": "docker compose -f docker-compose.dev.yml down",
     "db:push": "drizzle-kit push",
-    "db:seed": "tsx src/db/seed.ts",
+    "db:seed": "tsx --env-file=.env.local src/db/seed.ts",
     "db:studio": "drizzle-kit studio",
     "test": "vitest run",
     "test:watch": "vitest"

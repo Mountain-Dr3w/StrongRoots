@@ -8,6 +8,7 @@ export default defineConfig({
     setupFiles: ["./vitest.setup.ts"],
     globalSetup: ["./vitest.global-setup.ts"],
     hookTimeout: 60_000,
+    fileParallelism: false,
   },
   resolve: {
     alias: {
