@@ -19,6 +19,7 @@ const EnvSchema = z.object({
   NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
 
   SIGNED_URL_SECRET: z.string().optional(),
+  CONTENT_STORAGE_DIR: z.string().default("./content-storage"),
 });
 
 const parsed = EnvSchema.safeParse(process.env);
