@@ -1,0 +1,44 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  lint-typecheck-test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: ashlyn
+          POSTGRES_PASSWORD: ashlyn
+          POSTGRES_DB: ashlyn
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U ashlyn"
+          --health-interval 2s
+          --health-timeout 3s
+          --health-retries 20
+    env:
+      DATABASE_URL: postgres://ashlyn:ashlyn@localhost:5432/ashlyn
+      DATABASE_URL_TEST: postgres://ashlyn:ashlyn@localhost:5432/ashlyn_test
+      AUTH_SECRET: ci-only-secret-value-DEADBEEFDEADBEEFDEADBEEFDEADBEEF
+      SIGNED_URL_SECRET: ci-only-signed-url-secret
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Create test DB
+        run: |
+          until pg_isready -h localhost -p 5432 -U ashlyn; do sleep 0.5; done
+          PGPASSWORD=ashlyn psql -h localhost -U ashlyn -d postgres -c "CREATE DATABASE ashlyn_test;"
+      - run: npm run lint
+      - run: npx tsc --noEmit
+      - run: npm run test
+      - run: npm run build

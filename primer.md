@@ -1,27 +1,48 @@
 # Session State
 
 ## Current Focus
-BD-001 (database schema + migrations) is CLOSED. Plan for BD-002 (auth) and BD-003 (design system) — both unblocked. User directive: work through all 14 tickets and push to github.com/Mountain-Dr3w/StrongRoots.
+All 14 BD tickets closed. Project ships to github.com/Mountain-Dr3w/StrongRoots. Ready for operator verification of external integrations.
 
 ## Last Completed
-- BD-001: full Drizzle schema (12 tables across auth/products/commerce/scheduling/content/email), Vitest round-trip tests for every table group, idempotent `npm run db:seed` (admin user + Foundations 8-Week plan). `drizzle-kit push` runs clean against local Postgres (`npm run db:up`).
+- BD-001 — Drizzle schema (12 tables) + idempotent seed
+- BD-002 — NextAuth v5 with magic-link + Google; middleware for /admin & /account
+- BD-003 — Design system token seams (globals.css + primitive components)
+- BD-004 — /shop catalog (URL-filtered by type)
+- BD-005 — /shop/[slug] detail page + FAQ accordion
+- BD-006 — Stripe Checkout action + webhook (idempotent order+entitlement)
+- BD-007 — Entitlements + HMAC signed URLs for gated content
+- BD-008 — Availability rules + consulting booking flow
+- BD-009 — Customer dashboard (library/bookings/profile tabs)
+- BD-010 — Admin dashboard (products CRUD, content, bookings, availability, customers)
+- BD-011 — React Email templates (magic-link, receipt, booking conf/reminder/cancel) + sendEmail wrapper
+- BD-012 — PWA manifest + metadata + offline fallback + mobile polish
+- BD-013 — Marketing pages (/, /about, /contact) + robots + sitemap + structured data
+- BD-014 — Dockerfile (multi-stage standalone) + docker-compose.yml + GitHub Actions (CI + deploy)
 
 ## Next Step
-`bd ready` returns `StrongRoots-bo5` (BD-002 auth) and `StrongRoots-roo` (BD-003 design system). BD-003 has no external dependencies — ideal next. BD-002 can scaffold with placeholder env; full email magic link requires Resend API key from operator.
+Operator verification:
+1. Provide real Stripe test keys → run through BD-006 end-to-end (checkout + webhook).
+2. Provide Resend key + domain → verify BD-011 email delivery + BD-002 magic link.
+3. Provide Google OAuth creds → verify BD-002 Google provider.
+4. Set up Velveteen secrets (VELVETEEN_WEBHOOK_URL, VELVETEEN_TOKEN) → first deploy fires.
+5. Confirm Velveteen subdomain.
+6. Swap placeholder icons + design tokens with real design system assets (BD-003 seam).
 
 ## Open Blockers
-- **BD-002 (auth)** — needs `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET`, `RESEND_API_KEY`, `AUTH_SECRET`. Scaffold works without; verification needs keys.
-- **BD-006 (Stripe checkout)** — needs Stripe test-mode keys + webhook secret.
-- **BD-008 (consulting booking)** — needs Stripe.
-- **BD-011 (transactional email)** — needs Resend.
-- **BD-014 (Velveteen deploy)** — needs Velveteen subdomain + registry creds + webhook URL.
+- Full end-to-end verification of Stripe flows (test-mode keys required).
+- Resend domain verification for real email delivery.
+- Velveteen credentials + subdomain.
 
 ## Branch
 main
 
 ## Notes
-- Local DB: `npm run db:up` (docker compose), then `npm run db:push`, then `npm run db:seed`.
-- Tests: `npm run test` — Vitest with globalSetup that drops+pushes schema against DATABASE_URL_TEST before every run.
-- GitHub remote: `git@github.com:Mountain-Dr3w/StrongRoots.git` (HTTPS via gh).
-- Design system integration is external; do not invent visuals. BD-003 only wires token seams.
-- Stripe account must be in test mode until BD-006 ships and is QA'd.
+- `npm run db:up` to start local Postgres. `npm run db:push` to sync schema.
+  `npm run db:seed` seeds admin + sample plan + Mon/Wed/Fri availability.
+- `npm run test` runs Vitest (globalSetup resets + re-pushes test DB).
+- `npm run build` produces a Next.js standalone build for Docker.
+- CI: `.github/workflows/ci.yml` (lint + typecheck + test + build).
+- Deploy: `.github/workflows/deploy.yml` builds+pushes to ghcr.io and triggers
+  Velveteen webhook if secrets are set.
+- Email, Stripe, Google, and Resend are all set up behind env-gated fallbacks,
+  so the app boots + runs without any third-party keys.
