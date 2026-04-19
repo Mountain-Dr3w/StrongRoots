@@ -70,3 +70,43 @@ describe("schema: products + plans + consulting_offerings", () => {
     expect(offering.requiresIntake).toBe(true);
   });
 });
+
+describe("schema: orders + entitlements", () => {
+  it("records an order and grants an entitlement", async () => {
+    const [user] = await db
+      .insert(schema.users)
+      .values({ email: "buyer@example.com" })
+      .returning();
+
+    const [product] = await db
+      .insert(schema.products)
+      .values({
+        slug: "order-test-plan",
+        type: "plan",
+        name: "Order Test Plan",
+        priceCents: 9900,
+        stripePriceId: "price_order_test",
+      })
+      .returning();
+
+    const [order] = await db
+      .insert(schema.orders)
+      .values({
+        userId: user.id,
+        productId: product.id,
+        stripeSessionId: "cs_test_abc",
+        amountCents: 9900,
+        status: "paid",
+      })
+      .returning();
+
+    const [ent] = await db
+      .insert(schema.entitlements)
+      .values({ userId: user.id, productId: product.id })
+      .returning();
+
+    expect(order.status).toBe("paid");
+    expect(ent.userId).toBe(user.id);
+    expect(ent.revokedAt).toBeNull();
+  });
+});
