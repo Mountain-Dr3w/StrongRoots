@@ -1,9 +1,10 @@
 # Session State
 
 ## Current Focus
-All 14 BD tickets closed. Project ships to github.com/Mountain-Dr3w/StrongRoots. Ready for operator verification of external integrations.
+Design system integration — Loam direction from `strong_roots_design/`. Phase 1 (foundation tokens + fonts) shipped on `main`. Phase 2 (primitives) and Phase 3 (screens) are filed and blocked-by Phase 1 (now unblocked).
 
 ## Last Completed
+- StrongRoots-6wz — Design system Phase 1: `--sr-*` tokens in globals.css, Instrument Serif + Manrope + JetBrains Mono via next/font, `data-theme=light` default. Legacy `--color-*`/`--radius-*`/`--font-size-*` aliased to sr equivalents through Phase 3.
 - BD-001 — Drizzle schema (12 tables) + idempotent seed
 - BD-002 — NextAuth v5 with magic-link + Google; middleware for /admin & /account
 - BD-003 — Design system token seams (globals.css + primitive components)
@@ -20,7 +21,9 @@ All 14 BD tickets closed. Project ships to github.com/Mountain-Dr3w/StrongRoots.
 - BD-014 — Dockerfile (multi-stage standalone) + docker-compose.yml + GitHub Actions (CI + deploy)
 
 ## Next Step
-Operator verification:
+Design system Phase 2 — rebuild primitives (Button/Input/Card/Dialog/FaqAccordion) against `strong_roots_design/design_source/components.jsx`. Tracked as StrongRoots-lk4. After that, Phase 3 (screens) — StrongRoots-cs2.
+
+Operator verification still pending:
 1. Provide real Stripe test keys → run through BD-006 end-to-end (checkout + webhook).
 2. Provide Resend key + domain → verify BD-011 email delivery + BD-002 magic link.
 3. Provide Google OAuth creds → verify BD-002 Google provider.

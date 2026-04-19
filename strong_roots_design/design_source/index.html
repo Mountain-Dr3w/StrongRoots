@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Strong Roots — Design System</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Instrument+Serif:ital@0;1&family=Archivo+Narrow:wght@400;500;600;700&family=Inter+Tight:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" />
+
+  <style>
+    html, body { margin: 0; padding: 0; background: #f0eee9; overscroll-behavior: none; }
+    * { box-sizing: border-box; }
+    ::selection { background: rgba(168,74,40,0.25); }
+  </style>
+
+  <script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel" src="design-canvas.jsx"></script>
+  <script type="text/babel" src="tokens.jsx"></script>
+  <script type="text/babel" src="foundations.jsx"></script>
+  <script type="text/babel" src="components.jsx"></script>
+  <script type="text/babel" src="logos.jsx"></script>
+  <script type="text/babel" src="applications.jsx"></script>
+  <script type="text/babel" src="tweaks.jsx"></script>
+
+  <script type="text/babel">
+    const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+      "direction": "loam",
+      "mode": "dark",
+      "density": "editorial",
+      "hero": "split-tri",
+      "tone": "quiet",
+      "mark": "grove"
+    }/*EDITMODE-END*/;
+
+    function App() {
+      const [state, setStateRaw] = React.useState(() => {
+        try {
+          const saved = JSON.parse(localStorage.getItem('sr-tweaks') || 'null');
+          return saved ? { ...TWEAK_DEFAULTS, ...saved } : TWEAK_DEFAULTS;
+        } catch { return TWEAK_DEFAULTS; }
+      });
+      const [tweaksVisible, setTweaksVisible] = React.useState(true);
+
+      const setState = (patch) => {
+        setStateRaw(prev => {
+          const next = { ...prev, ...patch };
+          try { localStorage.setItem('sr-tweaks', JSON.stringify(next)); } catch {}
+          try {
+            window.parent.postMessage({ type: '__edit_mode_set_keys', edits: patch }, '*');
+          } catch {}
+          return next;
+        });
+      };
+
+      // tweaks toolbar integration
+      React.useEffect(() => {
+        const onMsg = (e) => {
+          if (!e.data || typeof e.data !== 'object') return;
+          if (e.data.type === '__activate_edit_mode') setTweaksVisible(true);
+          if (e.data.type === '__deactivate_edit_mode') setTweaksVisible(false);
+        };
+        window.addEventListener('message', onMsg);
+        try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch {}
+        return () => window.removeEventListener('message', onMsg);
+      }, []);
+
+      const { direction, mode } = state;
+      const p = PALETTES[direction][mode];
+      const t = TYPE_PAIRINGS[direction];
+
+      // Overview / title card — sits at top of canvas
+      const Title = () => (
+        <div style={{
+          padding: '40px 60px 24px', maxWidth: 1240, color: '#2a1d14',
+          fontFamily: t.body, marginBottom: 40,
+        }}>
+          <div style={{
+            fontFamily: 'ui-monospace, monospace', fontSize: 11,
+            letterSpacing: '0.22em', textTransform: 'uppercase', color: '#7a6a55',
+            marginBottom: 16,
+          }}>
+            Strong Roots — Design System v1 · April 2026
+          </div>
+          <div style={{
+            fontFamily: t.display, fontStyle: t.displayStyle, fontWeight: t.displayWeight,
+            fontSize: 72, lineHeight: 0.98, letterSpacing: '-0.025em', color: '#2a1d14',
+            marginBottom: 24, maxWidth: 1100, textWrap: 'balance',
+          }}>
+            A quiet, earthy system for Ashlyn's training practice.
+          </div>
+          <div style={{ fontSize: 16, lineHeight: 1.55, color: '#5a4636', maxWidth: 720 }}>
+            Three aesthetic directions — Heartwood, Understory, Loam — built on the same spacing,
+            elevation, and motion grammar. Mobile-first, scales to web. Use the Tweaks panel
+            (bottom right) to switch directions, mode, density, hero layout, and copy tone.
+            Everything on the canvas updates live.
+          </div>
+        </div>
+      );
+
+      return (
+        <>
+          <DesignCanvas>
+            <Title />
+
+            <DCSection title="01 · Foundations" subtitle="Color, type, spacing, elevation, motion">
+              <DCArtboard label={`Color system · ${PALETTES[direction].name} / ${mode}`}>
+                <ColorSystemArtboard direction={direction} mode={mode} />
+              </DCArtboard>
+              <DCArtboard label="Typography">
+                <TypographyArtboard direction={direction} mode={mode} />
+              </DCArtboard>
+              <DCArtboard label="System · spacing · radius · elevation · motion">
+                <SystemArtboard direction={direction} mode={mode} />
+              </DCArtboard>
+            </DCSection>
+
+            <DCSection title="02 · Components" subtitle="Buttons, forms, tags — the atoms">
+              <DCArtboard label="Buttons & links">
+                <ButtonsArtboard direction={direction} mode={mode} />
+              </DCArtboard>
+              <DCArtboard label="Forms & inputs">
+                <FormsArtboard direction={direction} mode={mode} />
+              </DCArtboard>
+              <DCArtboard label="Tags, meta, progress">
+                <BadgesArtboard direction={direction} mode={mode} />
+              </DCArtboard>
+            </DCSection>
+
+            <DCSection title="03 · Brand" subtitle="Logo lab · mark · wordmark · voice">
+              <DCArtboard label={`Logo lab · selected: ${state.mark}`}>
+                <LogoLabArtboard direction={direction} mode={mode} selected={state.mark} onSelect={(m) => setState({ mark: m })} />
+              </DCArtboard>
+              <DCArtboard label="Identity system">
+                <BrandArtboard direction={direction} mode={mode} mark={state.mark} />
+              </DCArtboard>
+            </DCSection>
+
+            <DCSection title="04 · Web applications" subtitle="Hero, plans, consulting tiers">
+              <DCArtboard label={`Hero · ${state.hero} · ${state.tone}`}>
+                <HeroArtboard direction={direction} mode={mode} layout={state.hero} tone={state.tone} mark={state.mark} />
+              </DCArtboard>
+              <DCArtboard label="Digital plans grid">
+                <PlansArtboard direction={direction} mode={mode} />
+              </DCArtboard>
+              <DCArtboard label="Consulting tiers">
+                <TiersArtboard direction={direction} mode={mode} />
+              </DCArtboard>
+            </DCSection>
+
+            <DCSection title="05 · Mobile" subtitle="The companion app — iOS first">
+              <DCArtboard label="Home · workout · plan detail">
+                <MobileArtboard direction={direction} mode={mode} mark={state.mark} />
+              </DCArtboard>
+            </DCSection>
+
+            <DCPostIt top={40} right={340} rotate={3} width={220}>
+              Open Tweaks (bottom right) to switch between the three directions and see every artboard update at once.
+            </DCPostIt>
+          </DesignCanvas>
+
+          <TweaksPanel state={state} setState={setState} visible={tweaksVisible} />
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

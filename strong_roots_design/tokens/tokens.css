@@ -1,0 +1,122 @@
+/* Strong Roots — Design Tokens (Loam direction)
+ * Framework-agnostic CSS custom properties.
+ * Use [data-theme="dark"] on <html> or <body> to switch modes.
+ */
+
+:root, [data-theme="light"] {
+  /* Surfaces */
+  --sr-bg:         #ebe6dc;
+  --sr-surface:    #f4efe4;
+  --sr-surface-alt:#dcd5c5;
+  --sr-line:       #c9c1ad;
+  --sr-line-soft:  #dcd5c5;
+
+  /* Ink */
+  --sr-ink:        #1c1a16;
+  --sr-ink-soft:   #4a463d;
+  --sr-ink-muted:  #867f70;
+
+  /* Accent */
+  --sr-accent:     #1c1a16;   /* near-black is the accent in Loam */
+  --sr-accent-ink: #ebe6dc;
+  --sr-accent-soft:#867f70;
+  --sr-signal:     #b8955a;   /* aged brass */
+
+  /* Error / warning (shared across modes) */
+  --sr-error:      #b54836;
+
+  /* Type families */
+  --sr-font-display: "Instrument Serif", "Cormorant Garamond", Georgia, serif;
+  --sr-font-body:    "Manrope", "Helvetica Neue", Arial, sans-serif;
+  --sr-font-mono:    "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --sr-font-label:   "Manrope", "Helvetica Neue", Arial, sans-serif;
+
+  /* Display is regular weight, normal style in Loam */
+  --sr-display-weight: 400;
+  --sr-display-style: normal;
+  --sr-label-tracking: 0.28em;
+
+  /* Type scale (px) */
+  --sr-text-micro:   11px;
+  --sr-text-caption: 12px;
+  --sr-text-small:   13px;
+  --sr-text-body:    15px;
+  --sr-text-lead:    17px;
+  --sr-text-h6:      18px;
+  --sr-text-h5:      22px;
+  --sr-text-h4:      28px;
+  --sr-text-h3:      36px;
+  --sr-text-h2:      48px;
+  --sr-text-h1:      64px;
+  --sr-text-display: 88px;
+
+  /* Line height */
+  --sr-lh-tight:   1.05;
+  --sr-lh-snug:    1.2;
+  --sr-lh-normal:  1.5;
+  --sr-lh-relaxed: 1.65;
+
+  /* Spacing — 4pt base */
+  --sr-space-1:  4px;
+  --sr-space-2:  8px;
+  --sr-space-3:  12px;
+  --sr-space-4:  16px;
+  --sr-space-5:  20px;
+  --sr-space-6:  24px;
+  --sr-space-7:  32px;
+  --sr-space-8:  40px;
+  --sr-space-9:  48px;
+  --sr-space-10: 64px;
+  --sr-space-11: 80px;
+  --sr-space-12: 96px;
+  --sr-space-13: 128px;
+
+  /* Radius — Loam uses medium radius by default (6px).
+     Buttons and inputs: --sr-radius-md.
+     Cards: --sr-radius-md.
+     Pills/tags: --sr-radius-pill. */
+  --sr-radius-none: 0;
+  --sr-radius-xs:   2px;
+  --sr-radius-sm:   4px;
+  --sr-radius-md:   6px;
+  --sr-radius-lg:   10px;
+  --sr-radius-xl:   16px;
+  --sr-radius-pill: 999px;
+
+  /* Elevation */
+  --sr-shadow-whisper: 0 1px 2px rgba(30,20,10,0.06);
+  --sr-shadow-rest:    0 2px 4px rgba(30,20,10,0.06), 0 8px 24px rgba(30,20,10,0.04);
+  --sr-shadow-lift:    0 4px 8px rgba(30,20,10,0.08), 0 16px 48px rgba(30,20,10,0.08);
+  --sr-shadow-float:   0 8px 16px rgba(30,20,10,0.10), 0 32px 80px rgba(30,20,10,0.12);
+
+  /* Motion */
+  --sr-dur-instant: 80ms;
+  --sr-dur-quick:   180ms;
+  --sr-dur-settle:  320ms;
+  --sr-dur-breathe: 640ms;
+
+  --sr-ease-out:    cubic-bezier(0.2, 0, 0, 1);
+  --sr-ease-reveal: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+[data-theme="dark"] {
+  --sr-bg:         #17150f;
+  --sr-surface:    #1f1c14;
+  --sr-surface-alt:#29251c;
+  --sr-line:       #2d2920;
+  --sr-line-soft:  #29251c;
+
+  --sr-ink:        #e6ddc8;
+  --sr-ink-soft:   #b3a88e;
+  --sr-ink-muted:  #857b67;
+
+  --sr-accent:     #e6ddc8;
+  --sr-accent-ink: #17150f;
+  --sr-accent-soft:#857b67;
+  --sr-signal:     #c9a66b;
+
+  --sr-shadow-whisper: 0 1px 2px rgba(0,0,0,0.6);
+  --sr-shadow-rest:    0 2px 4px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.4);
+  --sr-shadow-lift:    0 4px 8px rgba(0,0,0,0.5), 0 16px 48px rgba(0,0,0,0.4);
+  --sr-shadow-float:   0 8px 16px rgba(0,0,0,0.5), 0 32px 80px rgba(0,0,0,0.5);
+}
