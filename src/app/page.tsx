@@ -1,51 +1,152 @@
 import Link from "next/link";
 
 import { Button } from "@/components/Button";
-import { Card, CardBody, CardTitle } from "@/components/Card";
+import { Card, CardBody, CardImage, CardTitle } from "@/components/Card";
+import { Eyebrow } from "@/components/site/Eyebrow";
+import { SectionHeading } from "@/components/site/SectionHeading";
+import { SiteShell } from "@/components/site/SiteShell";
+import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
+
+const HERO_PANES = [
+  { label: "01 · warmup" },
+  { label: "02 · lift" },
+  { label: "03 · recover" },
+];
+
+const PILLARS = [
+  {
+    eyebrow: "Programs",
+    title: "Plans, on demand",
+    body:
+      "Eight to sixteen-week programs. Full PDFs and video demonstrations. Train on your schedule without losing the arc.",
+    href: "/shop?type=plan",
+    cta: "Browse plans",
+    label: "rack work",
+  },
+  {
+    eyebrow: "Consulting",
+    title: "Work with Ashlyn",
+    body:
+      "Monthly 1:1 consulting in three tiers. Weekly video check-ins, form review, and programs built around your season.",
+    href: "/shop?type=consulting",
+    cta: "See tiers",
+    label: "check-in",
+  },
+  {
+    eyebrow: "Nutrition",
+    title: "Eat for the long arc",
+    body:
+      "Macro targets and food frameworks bundled into Practice and Performance. Food is training you do three times a day.",
+    href: "/shop?type=consulting",
+    cta: "Book intake",
+    label: "plate",
+  },
+];
 
 export default function Home() {
   return (
-    <main className="min-h-screen p-[var(--space-8)]">
-      <div className="max-w-4xl mx-auto flex flex-col gap-[var(--space-8)]">
-        <section className="text-center flex flex-col gap-[var(--space-4)] py-[var(--space-8)]">
-          <h1 className="text-[var(--font-size-2xl)] font-semibold">
-            Build strength that stays.
-          </h1>
-          <p className="text-[var(--color-muted)] max-w-xl mx-auto">
-            Structured training plans and 1:1 consulting from Ashlyn — for people
-            who want to stop starting over.
-          </p>
-          <div className="flex gap-[var(--space-3)] justify-center flex-wrap">
-            <Link href="/shop?type=plan">
-              <Button variant="primary" size="lg">Browse plans</Button>
-            </Link>
-            <Link href="/shop?type=consulting">
-              <Button variant="ghost" size="lg">Book a session</Button>
-            </Link>
+    <SiteShell>
+      {/* ── Hero — split-tri with overlay card ─────────────────── */}
+      <section className="relative px-6 md:px-10 pt-10 md:pt-16 pb-24 md:pb-32">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-3 gap-3 md:gap-5 h-[420px] md:h-[520px]">
+            {HERO_PANES.map((pane) => (
+              <StripedPlaceholder
+                key={pane.label}
+                label={pane.label}
+                aspect={false}
+                className="h-full"
+              />
+            ))}
           </div>
-        </section>
 
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-[var(--space-4)]">
-          <Card>
-            <CardTitle>Plans</CardTitle>
-            <CardBody className="text-[var(--color-muted)]">
-              8 to 12-week programs with downloadable PDFs and video. Train on your schedule.
-            </CardBody>
-          </Card>
-          <Card>
-            <CardTitle>Consulting</CardTitle>
-            <CardBody className="text-[var(--color-muted)]">
-              1:1 sessions over video. Ashlyn reviews your training, form, and goals.
-            </CardBody>
-          </Card>
-          <Card>
-            <CardTitle>Built for mobile</CardTitle>
-            <CardBody className="text-[var(--color-muted)]">
-              Install as a PWA. Check your plan between sets.
-            </CardBody>
-          </Card>
-        </section>
-      </div>
-    </main>
+          <div className="relative md:-mt-24 mt-6">
+            <div className="bg-[var(--sr-bg)] md:pt-8 md:pr-10 md:pb-8 py-6 max-w-2xl md:border-r md:border-t border-[var(--sr-line-soft)]">
+              <Eyebrow>Strong Roots · Est. training practice</Eyebrow>
+              <h1 className="mt-4 font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] sm:text-[64px] md:text-[72px] leading-[0.98] tracking-[-0.02em] text-balance">
+                Build strength that stays.
+              </h1>
+              <p className="mt-6 text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-lg">
+                Structured programs and 1:1 consulting from Ashlyn — for people who are tired of starting over. Train for the long arc.
+              </p>
+              <div className="mt-7 flex flex-wrap gap-3">
+                <Link href="/shop?type=plan">
+                  <Button variant="primary" size="lg">
+                    Browse plans
+                  </Button>
+                </Link>
+                <Link href="/shop?type=consulting">
+                  <Button variant="secondary" size="lg">
+                    Book a call
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Three pillars ──────────────────────────────────────── */}
+      <section className="px-6 md:px-10 pb-24 md:pb-32">
+        <div className="max-w-6xl mx-auto flex flex-col gap-10">
+          <SectionHeading
+            eyebrow="The practice"
+            title="Three disciplines. One arc."
+            subtitle="Programs, consulting, and nutrition. Pick one or stack them — the goal is the same: sustainable strength you keep."
+          />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {PILLARS.map((pillar) => (
+              <Card key={pillar.eyebrow} className="flex flex-col">
+                <CardImage>
+                  <StripedPlaceholder
+                    label={pillar.label}
+                    aspect={false}
+                    className="h-full"
+                  />
+                </CardImage>
+                <CardBody className="flex flex-col gap-4 flex-1">
+                  <Eyebrow>{pillar.eyebrow}</Eyebrow>
+                  <CardTitle className="mb-0">{pillar.title}</CardTitle>
+                  <p className="text-[var(--sr-ink-soft)] leading-[var(--sr-lh-normal)]">
+                    {pillar.body}
+                  </p>
+                  <div className="mt-auto pt-4 border-t border-[var(--sr-line-soft)]">
+                    <Link
+                      href={pillar.href}
+                      className="inline-flex items-center gap-2 font-[var(--sr-font-label)] text-[11px] uppercase tracking-[var(--sr-label-tracking)] text-[var(--sr-ink)] hover:text-[var(--sr-ink-soft)]"
+                    >
+                      {pillar.cta}
+                      <svg width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden>
+                        <path
+                          d="M1 7h12M8 2l5 5-5 5"
+                          stroke="currentColor"
+                          strokeWidth="1.5"
+                          strokeLinecap="square"
+                        />
+                      </svg>
+                    </Link>
+                  </div>
+                </CardBody>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Voice strip ────────────────────────────────────────── */}
+      <section className="px-6 md:px-10 pb-24 md:pb-32">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start pt-12 border-t border-[var(--sr-line-soft)]">
+          <Eyebrow>Voice · how we talk about training</Eyebrow>
+          <div>
+            <p className="font-[var(--sr-font-display)] text-[28px] md:text-[36px] leading-[var(--sr-lh-snug)] text-[var(--sr-ink)]">
+              Training practice. Long arc. Sustainable strength.
+            </p>
+            <p className="mt-4 text-[var(--sr-ink-soft)] leading-[var(--sr-lh-relaxed)]">
+              Not crush it, not beast mode, not transformation. Just steady work, repaired back, and a body you can live in for decades.
+            </p>
+          </div>
+        </div>
+      </section>
+    </SiteShell>
   );
 }

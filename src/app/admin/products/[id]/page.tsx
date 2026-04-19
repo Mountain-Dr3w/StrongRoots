@@ -23,17 +23,17 @@ export default async function EditProductPage({ params }: { params: PageParams }
             <input type="hidden" name="id" value={product.id} />
 
             <label className="flex flex-col gap-[var(--space-1)]">
-              <span className="text-[var(--font-size-sm)] text-[var(--color-muted)]">Name</span>
+              <span className="text-[13px] text-[var(--sr-ink-muted)]">Name</span>
               <Input name="name" defaultValue={product.name} required />
             </label>
 
             <label className="flex flex-col gap-[var(--space-1)]">
-              <span className="text-[var(--font-size-sm)] text-[var(--color-muted)]">Description</span>
+              <span className="text-[13px] text-[var(--sr-ink-muted)]">Description</span>
               <Input name="description" defaultValue={product.description ?? ""} />
             </label>
 
             <label className="flex flex-col gap-[var(--space-1)]">
-              <span className="text-[var(--font-size-sm)] text-[var(--color-muted)]">Price (cents)</span>
+              <span className="text-[13px] text-[var(--sr-ink-muted)]">Price (cents)</span>
               <Input name="priceCents" type="number" defaultValue={product.priceCents} required />
             </label>
 

@@ -3,6 +3,7 @@ import type { ReactNode } from "react";
 
 import { auth, signOut } from "@/auth";
 import { Button } from "@/components/Button";
+import { Logo } from "@/components/site/Logo";
 
 const tabs = [
   { href: "/account/library", label: "Library" },
@@ -15,30 +16,34 @@ export default async function AccountLayout({ children }: { children: ReactNode 
   if (!session) return null;
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <header className="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
-        <div className="max-w-5xl mx-auto flex items-center justify-between px-[var(--space-6)] py-[var(--space-3)]">
-          <Link href="/" className="font-semibold">StrongRoots</Link>
+    <div className="min-h-screen flex flex-col bg-[var(--sr-bg)] text-[var(--sr-ink)]">
+      <header className="border-b border-[var(--sr-line-soft)]">
+        <div className="max-w-5xl mx-auto flex items-center justify-between gap-6 px-6 md:px-10 pt-5 pb-4">
+          <Link href="/" aria-label="Home">
+            <Logo variant="horizontal" tone="light" height={22} />
+          </Link>
           <form
             action={async () => {
               "use server";
               await signOut({ redirectTo: "/" });
             }}
           >
-            <Button type="submit" variant="ghost" size="sm">Sign out</Button>
+            <Button type="submit" variant="secondary" size="sm" arrow={false}>
+              Sign out
+            </Button>
           </form>
         </div>
-        <div className="max-w-5xl mx-auto px-[var(--space-6)] flex gap-[var(--space-1)]">
+        <nav className="max-w-5xl mx-auto px-6 md:px-10 flex gap-8 overflow-x-auto">
           {tabs.map((t) => (
             <Link
               key={t.href}
               href={t.href}
-              className="px-[var(--space-3)] py-[var(--space-2)] text-[var(--font-size-sm)] border-b-2 border-transparent hover:border-[var(--color-accent)]"
+              className="py-3 font-[var(--sr-font-label)] text-[11px] uppercase tracking-[var(--sr-label-tracking)] text-[var(--sr-ink-soft)] hover:text-[var(--sr-ink)] border-b-2 border-transparent hover:border-[var(--sr-ink)] transition-colors whitespace-nowrap"
             >
               {t.label}
             </Link>
           ))}
-        </div>
+        </nav>
       </header>
       <div className="flex-1">{children}</div>
     </div>

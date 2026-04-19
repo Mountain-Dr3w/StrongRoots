@@ -31,7 +31,7 @@ export default async function AdminBookings() {
 
   return (
     <main className="max-w-6xl mx-auto p-[var(--space-6)] flex flex-col gap-[var(--space-6)]">
-      <h1 className="text-[var(--font-size-2xl)] font-semibold">Bookings</h1>
+      <h1 className="font-[var(--sr-font-display)] text-[44px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">Bookings</h1>
 
       {rows.length === 0 ? (
         <Card>
@@ -45,16 +45,16 @@ export default async function AdminBookings() {
               <CardBody className="flex flex-col gap-[var(--space-2)]">
                 <div className="flex items-baseline justify-between gap-[var(--space-3)] flex-wrap">
                   <div>{formatDate(b.startAt)}</div>
-                  <div className="text-[var(--color-muted)] text-[var(--font-size-sm)]">
+                  <div className="text-[var(--sr-ink-muted)] text-[13px]">
                     {b.userEmail} · {b.status.replace("_", " ")}
                   </div>
                 </div>
                 {b.intakeAnswers ? (
                   <details>
-                    <summary className="cursor-pointer text-[var(--color-muted)] text-[var(--font-size-sm)]">
+                    <summary className="cursor-pointer text-[var(--sr-ink-muted)] text-[13px]">
                       Intake
                     </summary>
-                    <pre className="mt-[var(--space-2)] text-[var(--font-size-xs)] overflow-auto">
+                    <pre className="mt-[var(--space-2)] text-[11px] overflow-auto">
                       {JSON.stringify(b.intakeAnswers, null, 2)}
                     </pre>
                   </details>

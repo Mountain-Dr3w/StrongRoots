@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 
-import { Card, CardBody, CardTitle } from "@/components/Card";
+import { Eyebrow } from "@/components/site/Eyebrow";
+import { SiteShell } from "@/components/site/SiteShell";
+import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Ashlyn is a trainer who turned her own recovery into a system others can use.",
+  description:
+    "Ashlyn is a trainer who turned her own recovery into a system others can use.",
 };
 
 const personLd = {
@@ -16,29 +19,110 @@ const personLd = {
   sameAs: [],
 };
 
+const PRINCIPLES = [
+  {
+    title: "Training should repair, not punish.",
+    body:
+      "Programs progress in blocks. Sessions check in. Loads go up because the body is ready, not because the calendar says so.",
+  },
+  {
+    title: "Strength is a practice, not a project.",
+    body:
+      "No transformations. No before/after. Just reps, weeks, and the slow compound of doing the work most days.",
+  },
+  {
+    title: "If a plan doesn't fit, we talk.",
+    body:
+      "Consulting is a conversation. The 12-week program you bought is a starting point — not a contract.",
+  },
+];
+
 export default function AboutPage() {
   return (
-    <main className="min-h-screen p-[var(--space-8)]">
-      <div className="max-w-2xl mx-auto flex flex-col gap-[var(--space-6)]">
-        <h1 className="text-[var(--font-size-2xl)] font-semibold">About Ashlyn</h1>
-        <p className="text-[var(--color-muted)]">
-          Ashlyn is a trainer who turned her own recovery into a system others can use.
-          She coaches mostly online, with a handful of 1:1 consulting slots each week.
-          Full bio to be provided by Ashlyn — this is a placeholder.
-        </p>
-        <Card>
-          <CardTitle>How I work</CardTitle>
-          <CardBody className="flex flex-col gap-[var(--space-2)] text-[var(--color-muted)]">
-            <p>Training should repair, not punish. Programs progress steadily; sessions check in.</p>
-            <p>If a plan isn't right for where you are, we talk. No surprises.</p>
-          </CardBody>
-        </Card>
+    <SiteShell>
+      {/* ── Editorial hero ─────────────────────────────────────── */}
+      <section className="px-6 md:px-10 pt-12 md:pt-20 pb-20">
+        <div className="max-w-6xl mx-auto grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-16 items-end">
+          <div>
+            <Eyebrow>About the practice</Eyebrow>
+            <h1 className="mt-5 font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] sm:text-[64px] md:text-[88px] leading-[0.98] tracking-[-0.025em] text-balance">
+              Ashlyn trains people for the long arc.
+            </h1>
+            <p className="mt-8 text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-lg">
+              A coach who turned her own recovery into a system. She works mostly online, keeps a
+              handful of 1:1 consulting slots each week, and programs with the calm of someone who
+              has already earned back what she lost.
+            </p>
+          </div>
+          <StripedPlaceholder
+            label="portrait · ashlyn"
+            aspect="4/5"
+            className="w-full max-w-md md:ml-auto"
+          />
+        </div>
+      </section>
 
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
-        />
-      </div>
-    </main>
+      {/* ── Principles ─────────────────────────────────────────── */}
+      <section className="px-6 md:px-10 pb-24 md:pb-32">
+        <div className="max-w-6xl mx-auto border-t border-[var(--sr-line-soft)] pt-16">
+          <Eyebrow>How I work</Eyebrow>
+          <div className="mt-10 grid md:grid-cols-3 gap-10 md:gap-14">
+            {PRINCIPLES.map((p) => (
+              <div key={p.title} className="flex flex-col gap-4">
+                <h3 className="font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[28px] leading-[var(--sr-lh-snug)]">
+                  {p.title}
+                </h3>
+                <p className="text-[var(--sr-ink-soft)] leading-[var(--sr-lh-relaxed)]">
+                  {p.body}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Voice ──────────────────────────────────────────────── */}
+      <section className="px-6 md:px-10 pb-24 md:pb-32">
+        <div className="max-w-6xl mx-auto border-t border-[var(--sr-line-soft)] pt-16 grid md:grid-cols-2 gap-12">
+          <div>
+            <Eyebrow>We say</Eyebrow>
+            <ul className="mt-6 flex flex-col gap-3">
+              {[
+                "training practice",
+                "long arc",
+                "sustainable strength",
+                "check-in",
+                "block",
+                "repair",
+              ].map((word) => (
+                <li key={word} className="text-[var(--sr-ink)] text-[17px]">
+                  — {word}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <Eyebrow>We don't</Eyebrow>
+            <ul className="mt-6 flex flex-col gap-3">
+              {["shred", "crush it", "beast mode", "hack", "transformation", "guru"].map(
+                (word) => (
+                  <li
+                    key={word}
+                    className="text-[var(--sr-ink-muted)] text-[17px] line-through"
+                  >
+                    — {word}
+                  </li>
+                ),
+              )}
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personLd) }}
+      />
+    </SiteShell>
   );
 }

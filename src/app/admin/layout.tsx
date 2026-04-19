@@ -19,7 +19,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
 
   return (
     <div className="min-h-screen flex flex-col">
-      <header className="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
+      <header className="border-b border-[var(--sr-line-soft)] bg-[var(--sr-surface)]">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-[var(--space-6)] py-[var(--space-3)]">
           <Link href="/admin" className="font-semibold">StrongRoots admin</Link>
           <form
@@ -36,7 +36,7 @@ export default async function AdminLayout({ children }: { children: ReactNode })
             <Link
               key={t.href}
               href={t.href}
-              className="px-[var(--space-3)] py-[var(--space-2)] text-[var(--font-size-sm)] whitespace-nowrap border-b-2 border-transparent hover:border-[var(--color-accent)]"
+              className="px-[var(--space-3)] py-[var(--space-2)] text-[13px] whitespace-nowrap border-b-2 border-transparent hover:border-[var(--sr-ink)]"
             >
               {t.label}
             </Link>

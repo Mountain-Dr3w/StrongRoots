@@ -3,8 +3,9 @@
 import { useState } from "react";
 
 import { Button } from "@/components/Button";
-import { Card, CardBody, CardTitle } from "@/components/Card";
 import { Input } from "@/components/Input";
+import { cn } from "@/lib/cn";
+import { Eyebrow } from "@/components/site/Eyebrow";
 import { createBookingAction } from "./actions";
 
 interface Props {
@@ -42,17 +43,27 @@ export function BookingForm({ offeringId, requiresIntake, slots }: Props) {
   const grouped = groupByDate(slots);
 
   return (
-    <form action={createBookingAction} className="flex flex-col gap-[var(--space-4)]">
+    <form action={createBookingAction} className="flex flex-col gap-8">
       <input type="hidden" name="offeringId" value={offeringId} />
       <input type="hidden" name="startAt" value={selected ?? ""} />
 
-      <Card>
-        <CardTitle>Pick a time</CardTitle>
-        <CardBody className="flex flex-col gap-[var(--space-4)]">
+      <div className="flex flex-col gap-6">
+        <Eyebrow>Pick a time · next 7 days</Eyebrow>
+        <div className="flex flex-col gap-6">
           {Object.entries(grouped).map(([date, isos]) => (
-            <div key={date} className="flex flex-col gap-[var(--space-2)]">
-              <div className="font-medium">{formatDate(date)}</div>
-              <div className="flex flex-wrap gap-[var(--space-2)]">
+            <div
+              key={date}
+              className="flex flex-col gap-3 pb-5 border-b border-[var(--sr-line-soft)] last:border-b-0"
+            >
+              <div className="flex items-baseline justify-between">
+                <span className="font-[var(--sr-font-display)] text-[22px] text-[var(--sr-ink)]">
+                  {formatDate(date)}
+                </span>
+                <span className="font-[var(--sr-font-mono)] text-[11px] text-[var(--sr-ink-muted)]">
+                  {isos.length} open
+                </span>
+              </div>
+              <div className="flex flex-wrap gap-2">
                 {isos.map((iso) => {
                   const isSelected = selected === iso;
                   return (
@@ -60,11 +71,13 @@ export function BookingForm({ offeringId, requiresIntake, slots }: Props) {
                       type="button"
                       key={iso}
                       onClick={() => setSelected(iso)}
-                      className={
+                      className={cn(
+                        "px-4 h-10 font-[var(--sr-font-mono)] text-[13px]",
+                        "rounded-[var(--sr-radius-md)] border transition-colors",
                         isSelected
-                          ? "px-[var(--space-3)] h-8 rounded-[var(--radius-sm)] bg-[var(--color-accent)] text-[var(--color-accent-fg)]"
-                          : "px-[var(--space-3)] h-8 rounded-[var(--radius-sm)] border border-[var(--color-border)] text-[var(--color-fg)] hover:border-[var(--color-accent)]"
-                      }
+                          ? "bg-[var(--sr-accent)] text-[var(--sr-accent-ink)] border-[var(--sr-accent)]"
+                          : "bg-transparent text-[var(--sr-ink)] border-[var(--sr-line)] hover:border-[var(--sr-ink)]",
+                      )}
                     >
                       {formatTime(iso)}
                     </button>
@@ -73,28 +86,31 @@ export function BookingForm({ offeringId, requiresIntake, slots }: Props) {
               </div>
             </div>
           ))}
-        </CardBody>
-      </Card>
+        </div>
+      </div>
 
       {requiresIntake ? (
-        <Card>
-          <CardTitle>Tell Ashlyn about you</CardTitle>
-          <CardBody className="flex flex-col gap-[var(--space-3)]">
-            <label className="flex flex-col gap-[var(--space-1)]">
-              <span className="text-[var(--font-size-sm)] text-[var(--color-muted)]">Goals</span>
-              <Input name="intake_goals" required placeholder="What do you want out of this?" />
-            </label>
-            <label className="flex flex-col gap-[var(--space-1)]">
-              <span className="text-[var(--font-size-sm)] text-[var(--color-muted)]">Injuries</span>
-              <Input name="intake_injuries" placeholder="None, or describe" />
-            </label>
-          </CardBody>
-        </Card>
+        <div className="flex flex-col gap-6 pt-6 border-t border-[var(--sr-line-soft)]">
+          <Eyebrow>Tell Ashlyn about you</Eyebrow>
+          <Input
+            name="intake_goals"
+            label="Goals"
+            required
+            placeholder="What do you want out of this?"
+          />
+          <Input
+            name="intake_injuries"
+            label="Injuries"
+            placeholder="None, or describe"
+          />
+        </div>
       ) : null}
 
-      <Button type="submit" variant="primary" size="lg" disabled={!selected}>
-        Confirm booking
-      </Button>
+      <div className="pt-6 border-t border-[var(--sr-line-soft)] flex justify-end">
+        <Button type="submit" variant="primary" size="lg" disabled={!selected}>
+          Confirm booking
+        </Button>
+      </div>
     </form>
   );
 }

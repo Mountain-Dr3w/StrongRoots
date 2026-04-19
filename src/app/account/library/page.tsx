@@ -4,6 +4,7 @@ import { and, asc, eq, inArray, isNull } from "drizzle-orm";
 import { auth } from "@/auth";
 import { db, schema } from "@/db";
 import { Card, CardBody, CardTitle } from "@/components/Card";
+import { Eyebrow } from "@/components/site/Eyebrow";
 
 export const dynamic = "force-dynamic";
 
@@ -58,39 +59,79 @@ export default async function LibraryPage() {
   for (const p of planRows) planByProduct.set(p.productId, p);
 
   return (
-    <main className="min-h-screen p-[var(--space-8)]">
-      <div className="max-w-3xl mx-auto flex flex-col gap-[var(--space-6)]">
-        <h1 className="text-[var(--font-size-2xl)] font-semibold">Your library</h1>
+    <main className="max-w-4xl mx-auto px-6 md:px-10 py-12 md:py-16 flex flex-col gap-10">
+      <header className="flex flex-col gap-3">
+        <Eyebrow>Your practice</Eyebrow>
+        <h1 className="font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] md:text-[56px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">
+          Library.
+        </h1>
+        <p className="text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-xl">
+          Everything you've purchased — plans, content bundles, and session receipts.
+        </p>
+      </header>
 
-        {rows.length === 0 ? (
-          <Card>
-            <CardBody>
-              You haven't purchased any plans yet. <Link href="/shop" className="underline">Browse the shop</Link>.
-            </CardBody>
-          </Card>
-        ) : (
-          rows.map((r) => {
+      {rows.length === 0 ? (
+        <Card>
+          <CardBody>
+            <p className="text-[var(--sr-ink-soft)]">
+              You haven't purchased any plans yet.{" "}
+              <Link
+                href="/shop"
+                className="underline decoration-[var(--sr-line)] underline-offset-4 hover:text-[var(--sr-ink)]"
+              >
+                Browse the shop
+              </Link>
+              .
+            </p>
+          </CardBody>
+        </Card>
+      ) : (
+        <div className="flex flex-col gap-4">
+          {rows.map((r) => {
             const plan = planByProduct.get(r.productId);
             const assets = plan ? (assetsByPlan.get(plan.id) ?? []) : [];
             return (
               <Card key={r.productId}>
-                <CardTitle>{r.productName}</CardTitle>
-                <CardBody>
+                <CardBody className="flex flex-col gap-4">
+                  <div className="flex items-baseline justify-between gap-4 flex-wrap">
+                    <Eyebrow>
+                      {r.productType === "consulting" ? "Consulting" : "Plan"}
+                    </Eyebrow>
+                    <Link
+                      href={`/shop/${r.productSlug}`}
+                      className="font-[var(--sr-font-label)] text-[11px] uppercase tracking-[var(--sr-label-tracking)] text-[var(--sr-ink-soft)] hover:text-[var(--sr-ink)]"
+                    >
+                      View details →
+                    </Link>
+                  </div>
+                  <CardTitle className="mb-0">{r.productName}</CardTitle>
                   {r.productType === "consulting" ? (
-                    <p className="text-[var(--color-muted)]">
-                      Consulting session — manage from the <Link href="/account" className="underline">Bookings</Link> tab.
+                    <p className="text-[var(--sr-ink-soft)]">
+                      Consulting session — manage from the{" "}
+                      <Link
+                        href="/account/bookings"
+                        className="underline decoration-[var(--sr-line)] underline-offset-4 hover:text-[var(--sr-ink)]"
+                      >
+                        Bookings
+                      </Link>{" "}
+                      tab.
                     </p>
                   ) : assets.length === 0 ? (
-                    <p className="text-[var(--color-muted)]">No content available yet.</p>
+                    <p className="text-[var(--sr-ink-muted)]">No content available yet.</p>
                   ) : (
-                    <ul className="flex flex-col gap-[var(--space-2)]">
+                    <ul className="flex flex-col divide-y divide-[var(--sr-line-soft)]">
                       {assets.map((a) => (
-                        <li key={a.id}>
+                        <li key={a.id} className="py-3">
                           <a
                             href={`/api/content/${a.id}`}
-                            className="underline text-[var(--color-accent)]"
+                            className="flex items-center justify-between gap-4 group"
                           >
-                            {a.displayName}
+                            <span className="text-[var(--sr-ink)] group-hover:text-[var(--sr-ink-soft)]">
+                              {a.displayName}
+                            </span>
+                            <span className="font-[var(--sr-font-mono)] text-[11px] text-[var(--sr-ink-muted)]">
+                              Download →
+                            </span>
                           </a>
                         </li>
                       ))}
@@ -99,9 +140,9 @@ export default async function LibraryPage() {
                 </CardBody>
               </Card>
             );
-          })
-        )}
-      </div>
+          })}
+        </div>
+      )}
     </main>
   );
 }

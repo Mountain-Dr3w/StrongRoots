@@ -60,8 +60,8 @@ export default async function AdminCustomers({ searchParams }: { searchParams: S
                 href={`/admin/customers?user=${u.id}${filter ? `&q=${encodeURIComponent(filter)}` : ""}`}
                 className={
                   selected?.id === u.id
-                    ? "block px-[var(--space-2)] py-[var(--space-1)] rounded-[var(--radius-sm)] bg-[var(--color-primary)] text-[var(--color-primary-fg)]"
-                    : "block px-[var(--space-2)] py-[var(--space-1)] rounded-[var(--radius-sm)] hover:bg-[var(--color-surface)]"
+                    ? "block px-[var(--space-2)] py-[var(--space-1)] rounded-[var(--sr-radius-sm)] bg-[var(--sr-accent)] text-[var(--sr-accent-ink)]"
+                    : "block px-[var(--space-2)] py-[var(--space-1)] rounded-[var(--sr-radius-sm)] hover:bg-[var(--sr-surface)]"
                 }
               >
                 {u.email} {u.role === "admin" ? "(admin)" : null}
@@ -75,22 +75,22 @@ export default async function AdminCustomers({ searchParams }: { searchParams: S
         <Card>
           <CardTitle>{selected.email}</CardTitle>
           <CardBody className="flex flex-col gap-[var(--space-4)]">
-            <div className="text-[var(--color-muted)]">Role: {selected.role} · TZ: {selected.timezone}</div>
+            <div className="text-[var(--sr-ink-muted)]">Role: {selected.role} · TZ: {selected.timezone}</div>
 
             <div>
               <h3 className="font-medium mb-[var(--space-2)]">Entitlements</h3>
               {entitlements.length === 0 ? (
-                <p className="text-[var(--color-muted)]">None.</p>
+                <p className="text-[var(--sr-ink-muted)]">None.</p>
               ) : (
                 <ul className="flex flex-col gap-[var(--space-2)]">
                   {entitlements.map((e) => (
                     <li
                       key={e.id}
-                      className="flex items-center justify-between border border-[var(--color-border)] rounded-[var(--radius-sm)] p-[var(--space-2)]"
+                      className="flex items-center justify-between border border-[var(--sr-line-soft)] rounded-[var(--sr-radius-sm)] p-[var(--space-2)]"
                     >
                       <span>
                         {e.productName}
-                        {e.revokedAt ? <em className="text-[var(--color-muted)]"> — revoked</em> : null}
+                        {e.revokedAt ? <em className="text-[var(--sr-ink-muted)]"> — revoked</em> : null}
                       </span>
                       {!e.revokedAt ? (
                         <form action={revokeEntitlementAction}>
@@ -112,7 +112,7 @@ export default async function AdminCustomers({ searchParams }: { searchParams: S
                 <select
                   name="productId"
                   required
-                  className="flex-1 h-10 px-3 rounded-[var(--radius-md)] bg-[var(--color-surface)] border border-[var(--color-border)]"
+                  className="flex-1 h-10 px-3 rounded-[var(--sr-radius-md)] bg-[var(--sr-surface)] border border-[var(--sr-line-soft)]"
                 >
                   {allProducts.map((p) => (
                     <option key={p.id} value={p.id}>{p.name}</option>

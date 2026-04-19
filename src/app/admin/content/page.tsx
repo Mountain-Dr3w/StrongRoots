@@ -32,7 +32,7 @@ export default async function AdminContent() {
 
   return (
     <main className="max-w-4xl mx-auto p-[var(--space-6)] flex flex-col gap-[var(--space-6)]">
-      <h1 className="text-[var(--font-size-2xl)] font-semibold">Content</h1>
+      <h1 className="font-[var(--sr-font-display)] text-[44px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">Content</h1>
 
       {plans.length === 0 ? (
         <Card>
@@ -46,17 +46,17 @@ export default async function AdminContent() {
               <CardTitle>{p.productName}</CardTitle>
               <CardBody className="flex flex-col gap-[var(--space-3)]">
                 {assets.length === 0 ? (
-                  <p className="text-[var(--color-muted)]">No assets.</p>
+                  <p className="text-[var(--sr-ink-muted)]">No assets.</p>
                 ) : (
                   <ul className="flex flex-col gap-[var(--space-2)]">
                     {assets.map((a) => (
                       <li
                         key={a.id}
-                        className="flex items-center justify-between border border-[var(--color-border)] rounded-[var(--radius-sm)] p-[var(--space-2)]"
+                        className="flex items-center justify-between border border-[var(--sr-line-soft)] rounded-[var(--sr-radius-sm)] p-[var(--space-2)]"
                       >
                         <div>
                           <div>{a.displayName}</div>
-                          <div className="text-[var(--color-muted)] text-[var(--font-size-sm)]">
+                          <div className="text-[var(--sr-ink-muted)] text-[13px]">
                             {a.mime} · order {a.order}
                           </div>
                         </div>
@@ -72,7 +72,7 @@ export default async function AdminContent() {
                 <form
                   action={uploadAssetAction}
                   encType="multipart/form-data"
-                  className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_auto] gap-[var(--space-2)] pt-[var(--space-3)] border-t border-[var(--color-border)]"
+                  className="grid grid-cols-1 sm:grid-cols-[2fr_1fr_auto] gap-[var(--space-2)] pt-[var(--space-3)] border-t border-[var(--sr-line-soft)]"
                 >
                   <input type="hidden" name="planId" value={p.planId} />
                   <Input type="file" name="file" required />

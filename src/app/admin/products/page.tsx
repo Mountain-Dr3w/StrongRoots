@@ -20,7 +20,7 @@ export default async function AdminProducts() {
   return (
     <main className="max-w-6xl mx-auto p-[var(--space-6)] flex flex-col gap-[var(--space-6)]">
       <div className="flex items-center justify-between">
-        <h1 className="text-[var(--font-size-2xl)] font-semibold">Products</h1>
+        <h1 className="font-[var(--sr-font-display)] text-[44px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">Products</h1>
         <Link href="/admin/products/new">
           <Button variant="primary">New product</Button>
         </Link>
@@ -34,14 +34,14 @@ export default async function AdminProducts() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-4)]">
           {products.map((p) => (
             <Link key={p.id} href={`/admin/products/${p.id}`} className="block">
-              <Card className="hover:border-[var(--color-accent)] transition">
-                <div className="text-[var(--font-size-xs)] uppercase tracking-wide text-[var(--color-muted)]">
+              <Card className="hover:border-[var(--sr-ink)] transition">
+                <div className="text-[11px] uppercase tracking-wide text-[var(--sr-ink-muted)]">
                   {p.type} {p.active ? "" : "· inactive"}
                 </div>
                 <CardTitle>{p.name}</CardTitle>
                 <CardBody className="flex items-baseline justify-between">
                   <span>{formatPrice(p.priceCents)}</span>
-                  <span className="text-[var(--color-muted)] text-[var(--font-size-sm)]">
+                  <span className="text-[var(--sr-ink-muted)] text-[13px]">
                     {p.slug}
                   </span>
                 </CardBody>

@@ -37,19 +37,19 @@ export default async function AdminDashboard() {
 
   return (
     <main className="max-w-6xl mx-auto p-[var(--space-6)] flex flex-col gap-[var(--space-6)]">
-      <h1 className="text-[var(--font-size-2xl)] font-semibold">Dashboard</h1>
+      <h1 className="font-[var(--sr-font-display)] text-[44px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">Dashboard</h1>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-[var(--space-4)]">
         <Card>
           <CardTitle>{activeEnt.count}</CardTitle>
-          <CardBody className="text-[var(--color-muted)]">Active entitlements</CardBody>
+          <CardBody className="text-[var(--sr-ink-muted)]">Active entitlements</CardBody>
         </Card>
         <Card>
           <CardTitle>{upcoming.count}</CardTitle>
-          <CardBody className="text-[var(--color-muted)]">Upcoming bookings</CardBody>
+          <CardBody className="text-[var(--sr-ink-muted)]">Upcoming bookings</CardBody>
         </Card>
         <Card>
           <CardTitle>{formatPrice(revenue.sum)}</CardTitle>
-          <CardBody className="text-[var(--color-muted)]">Revenue this month</CardBody>
+          <CardBody className="text-[var(--sr-ink-muted)]">Revenue this month</CardBody>
         </Card>
       </div>
     </main>

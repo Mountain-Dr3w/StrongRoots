@@ -24,20 +24,20 @@ export default async function AdminAvailability() {
 
   return (
     <main className="max-w-4xl mx-auto p-[var(--space-6)] flex flex-col gap-[var(--space-6)]">
-      <h1 className="text-[var(--font-size-2xl)] font-semibold">Availability</h1>
+      <h1 className="font-[var(--sr-font-display)] text-[44px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">Availability</h1>
 
       <Card>
         <CardTitle>Weekly rules</CardTitle>
         <CardBody className="flex flex-col gap-[var(--space-3)]">
           {rules.length === 0 ? (
-            <p className="text-[var(--color-muted)]">No rules yet.</p>
+            <p className="text-[var(--sr-ink-muted)]">No rules yet.</p>
           ) : (
             <div className="flex flex-col gap-[var(--space-2)]">
               {rules.map((r) => (
                 <form
                   key={r.id}
                   action={deleteRuleAction}
-                  className="flex items-center justify-between gap-[var(--space-3)] p-[var(--space-2)] border border-[var(--color-border)] rounded-[var(--radius-sm)]"
+                  className="flex items-center justify-between gap-[var(--space-3)] p-[var(--space-2)] border border-[var(--sr-line-soft)] rounded-[var(--sr-radius-sm)]"
                 >
                   <input type="hidden" name="id" value={r.id} />
                   <div>
@@ -49,11 +49,11 @@ export default async function AdminAvailability() {
             </div>
           )}
 
-          <form action={addRuleAction} className="grid grid-cols-2 sm:grid-cols-5 gap-[var(--space-2)] pt-[var(--space-3)] border-t border-[var(--color-border)]">
+          <form action={addRuleAction} className="grid grid-cols-2 sm:grid-cols-5 gap-[var(--space-2)] pt-[var(--space-3)] border-t border-[var(--sr-line-soft)]">
             <select
               name="dayOfWeek"
               defaultValue="1"
-              className="h-10 px-3 rounded-[var(--radius-md)] bg-[var(--color-surface)] border border-[var(--color-border)]"
+              className="h-10 px-3 rounded-[var(--sr-radius-md)] bg-[var(--sr-surface)] border border-[var(--sr-line-soft)]"
             >
               {WEEKDAYS.map((d, i) => (
                 <option key={i} value={i}>{d}</option>
@@ -71,14 +71,14 @@ export default async function AdminAvailability() {
         <CardTitle>Exceptions (blocked dates)</CardTitle>
         <CardBody className="flex flex-col gap-[var(--space-3)]">
           {exceptions.length === 0 ? (
-            <p className="text-[var(--color-muted)]">No exceptions yet.</p>
+            <p className="text-[var(--sr-ink-muted)]">No exceptions yet.</p>
           ) : (
             <div className="flex flex-col gap-[var(--space-2)]">
               {exceptions.map((e) => (
                 <form
                   key={e.id}
                   action={deleteExceptionAction}
-                  className="flex items-center justify-between gap-[var(--space-3)] p-[var(--space-2)] border border-[var(--color-border)] rounded-[var(--radius-sm)]"
+                  className="flex items-center justify-between gap-[var(--space-3)] p-[var(--space-2)] border border-[var(--sr-line-soft)] rounded-[var(--sr-radius-sm)]"
                 >
                   <input type="hidden" name="id" value={e.id} />
                   <div>
@@ -91,7 +91,7 @@ export default async function AdminAvailability() {
             </div>
           )}
 
-          <form action={addExceptionAction} className="grid grid-cols-2 sm:grid-cols-4 gap-[var(--space-2)] pt-[var(--space-3)] border-t border-[var(--color-border)]">
+          <form action={addExceptionAction} className="grid grid-cols-2 sm:grid-cols-4 gap-[var(--space-2)] pt-[var(--space-3)] border-t border-[var(--sr-line-soft)]">
             <Input name="date" type="date" required />
             <Input name="note" placeholder="Holiday" />
             <label className="flex items-center gap-[var(--space-2)]">

@@ -3,8 +3,8 @@ import { eq } from "drizzle-orm";
 import { auth } from "@/auth";
 import { db, schema } from "@/db";
 import { Button } from "@/components/Button";
-import { Card, CardBody, CardTitle } from "@/components/Card";
 import { Input } from "@/components/Input";
+import { Eyebrow } from "@/components/site/Eyebrow";
 import { updateProfileAction } from "./actions";
 
 export const dynamic = "force-dynamic";
@@ -19,29 +19,41 @@ export default async function ProfileTab() {
   if (!user) return null;
 
   return (
-    <main className="max-w-2xl mx-auto p-[var(--space-6)] flex flex-col gap-[var(--space-6)]">
-      <h1 className="text-[var(--font-size-2xl)] font-semibold">Profile</h1>
+    <main className="max-w-2xl mx-auto px-6 md:px-10 py-12 md:py-16 flex flex-col gap-10">
+      <header className="flex flex-col gap-3">
+        <Eyebrow>Your details</Eyebrow>
+        <h1 className="font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] md:text-[56px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">
+          Profile.
+        </h1>
+        <p className="text-[var(--sr-ink-soft)] leading-[var(--sr-lh-normal)] max-w-lg">
+          Kept minimal on purpose. Email is fixed — update name and timezone below.
+        </p>
+      </header>
 
-      <Card>
-        <CardTitle>Your details</CardTitle>
-        <CardBody>
-          <form action={updateProfileAction} className="flex flex-col gap-[var(--space-3)]">
-            <label className="flex flex-col gap-[var(--space-1)]">
-              <span className="text-[var(--font-size-sm)] text-[var(--color-muted)]">Email</span>
-              <Input value={user.email} disabled />
-            </label>
-            <label className="flex flex-col gap-[var(--space-1)]">
-              <span className="text-[var(--font-size-sm)] text-[var(--color-muted)]">Name</span>
-              <Input name="name" defaultValue={user.name ?? ""} placeholder="Your name" />
-            </label>
-            <label className="flex flex-col gap-[var(--space-1)]">
-              <span className="text-[var(--font-size-sm)] text-[var(--color-muted)]">Timezone</span>
-              <Input name="timezone" defaultValue={user.timezone} placeholder="America/New_York" />
-            </label>
-            <Button type="submit" variant="primary">Save</Button>
-          </form>
-        </CardBody>
-      </Card>
+      <form
+        action={updateProfileAction}
+        className="flex flex-col gap-6 pt-6 border-t border-[var(--sr-line-soft)]"
+      >
+        <Input value={user.email} disabled label="Email" />
+        <Input
+          name="name"
+          defaultValue={user.name ?? ""}
+          placeholder="Your name"
+          label="Name"
+        />
+        <Input
+          name="timezone"
+          defaultValue={user.timezone}
+          placeholder="America/New_York"
+          label="Timezone"
+          hint="IANA tz — used for booking times and reminders."
+        />
+        <div className="pt-4 flex justify-end border-t border-[var(--sr-line-soft)]">
+          <Button type="submit" variant="primary" arrow={false}>
+            Save changes
+          </Button>
+        </div>
+      </form>
     </main>
   );
 }

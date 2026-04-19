@@ -4,9 +4,9 @@
 /*  Strong Roots — Design Tokens (Loam direction)                             */
 /*                                                                            */
 /*  Source of truth: strong_roots_design/tokens/tokens.css                    */
-/*  Components reference --sr-* tokens. Legacy --color-* / --radius-* /       */
-/*  --font-size-* names are aliased during the Phase 2/3 migration and will   */
-/*  be removed once all callers move over.                                    */
+/*  Components reference --sr-* tokens directly via arbitrary value Tailwind  */
+/*  classes (e.g. text-[var(--sr-ink)]) or via the @theme inline aliases      */
+/*  below (e.g. bg-sr-surface).                                               */
 /* -------------------------------------------------------------------------- */
 
 :root, [data-theme="light"] {
@@ -101,41 +101,15 @@
   --sr-ease-out:    cubic-bezier(0.2, 0, 0, 1);
   --sr-ease-reveal: cubic-bezier(0.4, 0, 0.2, 1);
 
-  /* ---------------------------------------------------------------------- */
-  /*  Legacy aliases — removed in Phase 3 after all callers migrate.        */
-  /* ---------------------------------------------------------------------- */
-  --color-bg:         var(--sr-bg);
-  --color-fg:         var(--sr-ink);
-  --color-muted:      var(--sr-ink-muted);
-  --color-border:     var(--sr-line);
-  --color-surface:    var(--sr-surface);
-  --color-primary:    var(--sr-accent);
-  --color-primary-fg: var(--sr-accent-ink);
-  --color-accent:     var(--sr-accent);
-  --color-accent-fg:  var(--sr-accent-ink);
-  --color-danger:     var(--sr-error);
-  --color-danger-fg:  var(--sr-accent-ink);
-
-  --radius-sm: var(--sr-radius-sm);
-  --radius-md: var(--sr-radius-md);
-  --radius-lg: var(--sr-radius-lg);
-  --radius-xl: var(--sr-radius-xl);
-
+  /* Space aliases — kept so admin pages that reference --space-N continue
+     to resolve. All other legacy --color-* / --radius-* / --font-size-*
+     aliases have been removed now that callers migrated to --sr-* tokens. */
   --space-1: var(--sr-space-1);
   --space-2: var(--sr-space-2);
   --space-3: var(--sr-space-3);
   --space-4: var(--sr-space-4);
   --space-6: var(--sr-space-6);
   --space-8: var(--sr-space-7);
-
-  --font-sans: var(--sr-font-body);
-  --font-mono: var(--sr-font-mono);
-  --font-size-xs:   var(--sr-text-caption);
-  --font-size-sm:   var(--sr-text-small);
-  --font-size-base: var(--sr-text-body);
-  --font-size-lg:   var(--sr-text-lead);
-  --font-size-xl:   var(--sr-text-h5);
-  --font-size-2xl:  var(--sr-text-h4);
 }
 
 [data-theme="dark"] {
@@ -185,27 +159,6 @@
   --font-sr-display: var(--sr-font-display);
   --font-sr-body:    var(--sr-font-body);
   --font-sr-mono:    var(--sr-font-mono);
-
-  /* Legacy aliases — mirror globals.css block above. */
-  --color-bg:         var(--sr-bg);
-  --color-fg:         var(--sr-ink);
-  --color-muted:      var(--sr-ink-muted);
-  --color-border:     var(--sr-line);
-  --color-surface:    var(--sr-surface);
-  --color-primary:    var(--sr-accent);
-  --color-primary-fg: var(--sr-accent-ink);
-  --color-accent:     var(--sr-accent);
-  --color-accent-fg:  var(--sr-accent-ink);
-  --color-danger:     var(--sr-error);
-  --color-danger-fg:  var(--sr-accent-ink);
-
-  --radius-sm: var(--sr-radius-sm);
-  --radius-md: var(--sr-radius-md);
-  --radius-lg: var(--sr-radius-lg);
-  --radius-xl: var(--sr-radius-xl);
-
-  --font-sans: var(--sr-font-body);
-  --font-mono: var(--sr-font-mono);
 }
 
 body {
