@@ -8,9 +8,9 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
 
 const HERO_PANES = [
-  { label: "01 · warmup" },
-  { label: "02 · lift" },
-  { label: "03 · recover" },
+  { label: "01 · warmup", src: "/stock/hero-warmup.jpg" },
+  { label: "02 · lift", src: "/stock/hero-lift.jpg" },
+  { label: "03 · recover", src: "/stock/hero-recover.jpg" },
 ];
 
 const PILLARS = [
@@ -22,6 +22,7 @@ const PILLARS = [
     href: "/shop?type=plan",
     cta: "Browse plans",
     label: "rack work",
+    src: "/stock/plan-rack.jpg",
   },
   {
     eyebrow: "Consulting",
@@ -31,6 +32,7 @@ const PILLARS = [
     href: "/shop?type=consulting",
     cta: "See tiers",
     label: "check-in",
+    src: "/stock/consulting.jpg",
   },
   {
     eyebrow: "Nutrition",
@@ -40,6 +42,7 @@ const PILLARS = [
     href: "/shop?type=consulting",
     cta: "Book intake",
     label: "plate",
+    src: "/stock/nutrition.jpg",
   },
 ];
 
@@ -50,12 +53,14 @@ export default function Home() {
       <section className="relative px-6 md:px-10 pt-10 md:pt-16 pb-24 md:pb-32">
         <div className="max-w-6xl mx-auto">
           <div className="grid grid-cols-3 gap-3 md:gap-5 h-[420px] md:h-[520px]">
-            {HERO_PANES.map((pane) => (
+            {HERO_PANES.map((pane, idx) => (
               <StripedPlaceholder
                 key={pane.label}
                 label={pane.label}
+                src={pane.src}
                 aspect={false}
                 className="h-full"
+                priority={idx === 0}
               />
             ))}
           </div>
@@ -100,6 +105,7 @@ export default function Home() {
                 <CardImage>
                   <StripedPlaceholder
                     label={pillar.label}
+                    src={pillar.src}
                     aspect={false}
                     className="h-full"
                   />

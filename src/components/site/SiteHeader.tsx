@@ -18,7 +18,7 @@ export async function SiteHeader() {
     <header className="border-b border-[var(--sr-line-soft)] bg-[var(--sr-bg)] sticky top-0 z-30 backdrop-blur-sm">
       <div className="max-w-6xl mx-auto flex items-center justify-between gap-6 px-6 md:px-10 py-5">
         <Link href="/" aria-label="StrongRoots home" className="shrink-0">
-          <Logo variant="horizontal" tone="light" height={22} priority />
+          <Logo variant="horizontal" tone="light" height={36} priority />
         </Link>
 
         <nav className="hidden md:flex gap-8 font-[var(--sr-font-label)] text-[11px] uppercase tracking-[var(--sr-label-tracking)] text-[var(--sr-ink-soft)]">

@@ -8,7 +8,7 @@ export function SiteFooter() {
     <footer className="border-t border-[var(--sr-line-soft)] bg-[var(--sr-bg)]">
       <div className="max-w-6xl mx-auto px-6 md:px-10 py-16 flex flex-col md:flex-row gap-10 md:gap-16 justify-between">
         <div className="flex flex-col gap-5 max-w-sm">
-          <Logo variant="horizontal" tone="light" height={24} />
+          <Logo variant="horizontal" tone="light" height={32} />
           <p className="text-[var(--sr-ink-soft)] text-[15px] leading-[var(--sr-lh-normal)]">
             Training for the long arc. Programs, consulting, and nutrition practice from Ashlyn.
           </p>

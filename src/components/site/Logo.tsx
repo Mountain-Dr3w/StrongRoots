@@ -19,7 +19,7 @@ export function Logo({
   priority?: boolean;
 }) {
   const src = `/brand/logo-grove-${variant}-${tone}.svg`;
-  const aspect = variant === "horizontal" ? 4.8 : 1;
+  const aspect = variant === "horizontal" ? 5 : 1;
   const width = Math.round(height * aspect);
   return (
     <Image

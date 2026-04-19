@@ -79,7 +79,12 @@ export default async function BookPage({ params }: { params: PageParams }) {
         <div className="max-w-6xl mx-auto grid md:grid-cols-[0.9fr_1.1fr] gap-10 md:gap-16 items-start">
           {/* Session summary */}
           <aside className="md:sticky md:top-28 flex flex-col gap-6">
-            <StripedPlaceholder label={`${product.slug} · intake`} aspect="4/5" />
+            <StripedPlaceholder
+              label={`${product.slug} · intake`}
+              src="/stock/consulting.jpg"
+              aspect="4/5"
+              priority
+            />
             <div className="flex flex-col gap-3">
               <Eyebrow>Book a session</Eyebrow>
               <h1 className="font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[40px] md:text-[48px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">

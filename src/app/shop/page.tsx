@@ -15,6 +15,14 @@ function formatPrice(cents: number): string {
   return `$${(cents / 100).toFixed(0)}`;
 }
 
+const PLAN_COVERS = ["/stock/plan-rack.jpg", "/stock/plan-onboarding.jpg", "/stock/plan-back.jpg"];
+const CONSULTING_COVERS = ["/stock/consulting.jpg", "/stock/nutrition.jpg", "/stock/portrait.jpg"];
+
+function coverFor(type: "plan" | "consulting", idx: number): string {
+  const pool = type === "plan" ? PLAN_COVERS : CONSULTING_COVERS;
+  return pool[idx % pool.length];
+}
+
 export const dynamic = "force-dynamic";
 
 export default async function ShopPage({ searchParams }: { searchParams: ShopSearchParams }) {
@@ -71,6 +79,7 @@ export default async function ShopPage({ searchParams }: { searchParams: ShopSea
                     <CardImage>
                       <StripedPlaceholder
                         label={p.type === "plan" ? `plan · ${p.slug}` : `${p.slug} · 1:1`}
+                        src={coverFor(p.type, idx)}
                         aspect={false}
                         className="h-full"
                       />

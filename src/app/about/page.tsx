@@ -56,8 +56,10 @@ export default function AboutPage() {
           </div>
           <StripedPlaceholder
             label="portrait · ashlyn"
+            src="/stock/portrait.jpg"
             aspect="4/5"
             className="w-full max-w-md md:ml-auto"
+            priority
           />
         </div>
       </section>
