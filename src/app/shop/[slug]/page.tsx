@@ -129,6 +129,26 @@ export default async function ProductDetailPage({ params }: { params: PageParams
           <h2 className="text-[var(--font-size-xl)] font-semibold">FAQ</h2>
           <FaqAccordion items={FAQ_ITEMS} />
         </section>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Product",
+              name: product.name,
+              description: product.description ?? undefined,
+              offers: {
+                "@type": "Offer",
+                priceCurrency: "USD",
+                price: (product.priceCents / 100).toFixed(2),
+                availability: product.active
+                  ? "https://schema.org/InStock"
+                  : "https://schema.org/OutOfStock",
+              },
+            }),
+          }}
+        />
       </div>
     </main>
   );
