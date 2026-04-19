@@ -13,6 +13,12 @@ const EnvSchema = z.object({
 
   AUTH_RESEND_KEY: z.string().optional(),
   AUTH_RESEND_FROM: z.string().email().optional(),
+
+  STRIPE_SECRET_KEY: z.string().optional(),
+  STRIPE_WEBHOOK_SECRET: z.string().optional(),
+  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: z.string().optional(),
+
+  SIGNED_URL_SECRET: z.string().optional(),
 });
 
 const parsed = EnvSchema.safeParse(process.env);
