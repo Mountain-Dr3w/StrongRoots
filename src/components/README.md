@@ -28,10 +28,18 @@ To replace placeholder visuals with the real design system:
 
 ## Variant inventory
 
-- `Button` — variants: `primary | accent | ghost | danger`; sizes: `sm | md | lg`.
-- `Input` — single variant; theming via tokens.
-- `Card` + `CardTitle` + `CardBody` — compose into content blocks.
+- `Button` — variants: `primary | secondary | tertiary | ghost | accent | danger`;
+  sizes: `sm | md | lg`. Primary + tertiary get a trailing arrow glyph by default;
+  override with `arrow={false}`. `ghost` is an alias for `secondary` kept for
+  backward compat.
+- `Input` — single variant; accepts optional `label`, `hint`, `error` slots.
+  Error state swaps the border to `--sr-error`; focus swaps it to 2px `--sr-accent`.
+- `Card` + `CardImage` + `CardBody` + `CardTitle` — 16:9 image slot (striped
+  placeholder background until real photography lands), 24px content padding,
+  `--sr-font-display` title.
 - `Dialog` — wraps the native `<dialog>` element; controlled via `open` + `onClose`.
+  Uses `--sr-surface`, `--sr-line-soft`, `--sr-shadow-lift`.
+- `FaqAccordion` — hairline dividers (`--sr-line-soft`), serif question, sans answer.
 
 When adding a new variant, add the token first, then the variant class that
 references it. Do not short-circuit with inline color values.

@@ -4,6 +4,7 @@
 Design system integration — Loam direction from `strong_roots_design/`. Phase 1 (foundation tokens + fonts) shipped on `main`. Phase 2 (primitives) and Phase 3 (screens) are filed and blocked-by Phase 1 (now unblocked).
 
 ## Last Completed
+- StrongRoots-lk4 — Design system Phase 2: Button/Input/Card/Dialog/FaqAccordion rebuilt against the Loam spec. Button gains `secondary`/`tertiary` variants + optional `arrow` prop (primary/accent/tertiary auto-arrow). Input gains `label`/`hint`/`error` slots. Card gains `CardImage` 16:9 slot. Dialog + FaqAccordion retokenized.
 - StrongRoots-6wz — Design system Phase 1: `--sr-*` tokens in globals.css, Instrument Serif + Manrope + JetBrains Mono via next/font, `data-theme=light` default. Legacy `--color-*`/`--radius-*`/`--font-size-*` aliased to sr equivalents through Phase 3.
 - BD-001 — Drizzle schema (12 tables) + idempotent seed
 - BD-002 — NextAuth v5 with magic-link + Google; middleware for /admin & /account
@@ -21,7 +22,7 @@ Design system integration — Loam direction from `strong_roots_design/`. Phase 
 - BD-014 — Dockerfile (multi-stage standalone) + docker-compose.yml + GitHub Actions (CI + deploy)
 
 ## Next Step
-Design system Phase 2 — rebuild primitives (Button/Input/Card/Dialog/FaqAccordion) against `strong_roots_design/design_source/components.jsx`. Tracked as StrongRoots-lk4. After that, Phase 3 (screens) — StrongRoots-cs2.
+Design system Phase 3 — rebuild marketing pages against `strong_roots_design/design_source/applications.jsx` (split-tri hero, plans grid, consulting tiers), then account/admin. Tracked as StrongRoots-cs2. Final step of Phase 3: delete legacy `--color-*` / `--radius-*` / `--font-size-*` aliases from `globals.css`.
 
 Operator verification still pending:
 1. Provide real Stripe test keys → run through BD-006 end-to-end (checkout + webhook).

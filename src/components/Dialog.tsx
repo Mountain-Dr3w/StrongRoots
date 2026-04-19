@@ -34,10 +34,11 @@ export const Dialog = forwardRef<HTMLDialogElement, DialogProps>(function Dialog
       ref={setRefs}
       onClose={onClose}
       className={cn(
-        "backdrop:bg-black/40",
-        "bg-[var(--color-surface)] text-[var(--color-fg)]",
-        "border border-[var(--color-border)]",
-        "rounded-[var(--radius-lg)] p-[var(--space-6)]",
+        "backdrop:bg-black/50 backdrop:backdrop-blur-[2px]",
+        "bg-[var(--sr-surface)] text-[var(--sr-ink)]",
+        "border border-[var(--sr-line-soft)]",
+        "rounded-[var(--sr-radius-md)] p-8",
+        "shadow-[var(--sr-shadow-lift)]",
         "max-w-lg w-full",
         className,
       )}

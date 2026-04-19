@@ -13,9 +13,9 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
     <div
       ref={ref}
       className={cn(
-        "bg-[var(--color-surface)] text-[var(--color-fg)]",
-        "border border-[var(--color-border)]",
-        "rounded-[var(--radius-lg)] p-[var(--space-6)]",
+        "bg-[var(--sr-surface)] text-[var(--sr-ink)]",
+        "border border-[var(--sr-line-soft)]",
+        "rounded-[var(--sr-radius-md)] overflow-hidden",
         className,
       )}
       {...rest}
@@ -23,20 +23,49 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(function Card(
   );
 });
 
-export const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingElement>>(
-  function CardTitle({ className, ...rest }, ref) {
+export const CardImage = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
+  function CardImage({ className, children, ...rest }, ref) {
     return (
-      <h3
+      <div
         ref={ref}
-        className={cn("text-[var(--font-size-xl)] font-semibold mb-[var(--space-2)]", className)}
+        className={cn(
+          "aspect-[16/9] w-full bg-[var(--sr-surface-alt)]",
+          "border-b border-[var(--sr-line-soft)] overflow-hidden",
+          className,
+        )}
         {...rest}
-      />
+      >
+        {children}
+      </div>
     );
   },
 );
 
 export const CardBody = forwardRef<HTMLDivElement, HTMLAttributes<HTMLDivElement>>(
   function CardBody({ className, ...rest }, ref) {
-    return <div ref={ref} className={cn("text-[var(--color-fg)]", className)} {...rest} />;
+    return (
+      <div
+        ref={ref}
+        className={cn("p-[24px] text-[var(--sr-ink)]", className)}
+        {...rest}
+      />
+    );
+  },
+);
+
+export const CardTitle = forwardRef<HTMLHeadingElement, HTMLAttributes<HTMLHeadingElement>>(
+  function CardTitle({ className, ...rest }, ref) {
+    return (
+      <h3
+        ref={ref}
+        className={cn(
+          "font-[var(--sr-font-display)] font-normal",
+          "text-[30px] leading-[var(--sr-lh-snug)] mb-3",
+          "text-[var(--sr-ink)]",
+          className,
+        )}
+        {...rest}
+      />
+    );
   },
 );
