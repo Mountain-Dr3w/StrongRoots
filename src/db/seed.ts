@@ -61,6 +61,15 @@ export async function seed() {
     });
   }
 
+  const existingRule = await db.query.availabilityRules.findFirst();
+  if (!existingRule) {
+    await db.insert(schema.availabilityRules).values([
+      { dayOfWeek: 1, startTime: "09:00", endTime: "12:00", timezone: "America/New_York" },
+      { dayOfWeek: 3, startTime: "13:00", endTime: "17:00", timezone: "America/New_York" },
+      { dayOfWeek: 5, startTime: "09:00", endTime: "12:00", timezone: "America/New_York" },
+    ]);
+  }
+
   console.log(`Seed complete: admin=${adminId} product=${productId}`);
   return { adminId, productId };
 }
