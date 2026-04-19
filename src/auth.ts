@@ -1,12 +1,14 @@
+import { createElement } from "react";
 import NextAuth, { type DefaultSession } from "next-auth";
 import Google from "next-auth/providers/google";
-import Resend from "next-auth/providers/resend";
 import type { Provider } from "next-auth/providers";
 import { DrizzleAdapter } from "@auth/drizzle-adapter";
 
+import MagicLinkEmail from "@/emails/MagicLink";
 import { db } from "@/db";
 import { accounts, sessions, users, verificationTokens } from "@/db/schema";
 import { env } from "@/env";
+import { sendEmail } from "@/lib/email";
 
 type Role = "user" | "admin";
 
@@ -33,26 +35,26 @@ if (env.AUTH_GOOGLE_ID && env.AUTH_GOOGLE_SECRET) {
   );
 }
 
-if (env.AUTH_RESEND_KEY && env.AUTH_RESEND_FROM) {
-  providers.push(
-    Resend({
-      apiKey: env.AUTH_RESEND_KEY,
-      from: env.AUTH_RESEND_FROM,
-    }),
-  );
-} else {
-  providers.push({
-    id: "resend",
-    type: "email",
-    name: "Email",
-    from: env.AUTH_RESEND_FROM ?? "auth@strongroots.local",
-    maxAge: 24 * 60 * 60,
-    options: {},
-    async sendVerificationRequest({ url, identifier }) {
+providers.push({
+  id: "resend",
+  type: "email",
+  name: "Email",
+  from: env.AUTH_RESEND_FROM ?? "auth@strongroots.local",
+  maxAge: 24 * 60 * 60,
+  options: {},
+  async sendVerificationRequest({ url, identifier }) {
+    const host = new URL(url).host;
+    await sendEmail({
+      to: identifier,
+      subject: `Sign in to ${host}`,
+      template: "magic-link",
+      react: createElement(MagicLinkEmail, { url, host }),
+    });
+    if (!env.AUTH_RESEND_KEY) {
       console.log(`\n[dev magic link] for ${identifier}: ${url}\n`);
-    },
-  } as Provider);
-}
+    }
+  },
+} as Provider);
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: DrizzleAdapter(db, {

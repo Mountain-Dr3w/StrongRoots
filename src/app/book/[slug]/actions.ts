@@ -84,14 +84,13 @@ export async function cancelBookingAction(formData: FormData) {
   });
   if (!booking || booking.userId !== session.user.id) redirect("/account");
 
-  const newStatus = canCancel(booking.startAt) ? "cancelled" : booking.status;
-  if (newStatus !== booking.status) {
+  if (canCancel(booking.startAt)) {
     await db
       .update(schema.bookings)
       .set({ status: "cancelled" })
       .where(eq(schema.bookings.id, bookingId));
+    await enqueueJob("sendBookingCancellation", { bookingId });
   } else {
-    // late cancel: flag for admin review. BD-010 surfaces these; for now we log.
     console.log(`[booking] late-cancel requested for ${bookingId} — needs admin review`);
   }
 
