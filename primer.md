@@ -8,7 +8,7 @@ Bootstrap phase complete. Ready to start BD-001 (database schema).
 - All stories seeded into Beads with dependencies
 
 ## Next Step
-`bd ready` → pick BD-001 (schema) → write migrations → advance.
+`bd ready` shows two unblocked tickets — `StrongRoots-qyi` (Database schema + migrations, aka BD-001) and `StrongRoots-roo` (Design system wiring + token shell, aka BD-003). Start with `StrongRoots-qyi` → write migrations → advance.
 
 ## Open Blockers
 - None.

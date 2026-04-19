@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "embedded",
+  "dolt_database": "StrongRoots",
+  "project_id": "f8bf55c7-44e4-421c-b0fd-81af52054d7c"
+}
