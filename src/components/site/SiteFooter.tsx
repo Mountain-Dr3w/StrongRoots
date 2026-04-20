@@ -51,9 +51,8 @@ export function SiteFooter() {
         </div>
       </div>
       <div className="border-t border-[var(--sr-line-soft)]">
-        <div className="max-w-6xl mx-auto px-6 md:px-10 py-6 flex items-center justify-between font-[var(--sr-font-mono)] text-[11px] text-[var(--sr-ink-muted)]">
+        <div className="max-w-6xl mx-auto px-6 md:px-10 py-6 font-[var(--sr-font-mono)] text-[11px] text-[var(--sr-ink-muted)]">
           <span>© {year} Strong Roots</span>
-          <span>Made for the long arc.</span>
         </div>
       </div>
     </footer>

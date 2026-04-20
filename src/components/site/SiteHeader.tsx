@@ -15,8 +15,8 @@ export async function SiteHeader() {
   const session = await auth();
 
   return (
-    <header className="border-b border-[var(--sr-line-soft)] bg-[var(--sr-bg)] sticky top-0 z-30 backdrop-blur-sm">
-      <div className="max-w-6xl mx-auto flex items-center justify-between gap-6 px-6 md:px-10 py-5">
+    <header className="border-b border-[var(--sr-line-soft)] bg-[var(--sr-bg)] sticky top-0 z-30 backdrop-blur-sm px-6 md:px-10">
+      <div className="max-w-6xl mx-auto flex items-center justify-between gap-6 py-5">
         <Link href="/" aria-label="StrongRoots home" className="shrink-0">
           <Logo tone="light" height={24} priority />
         </Link>

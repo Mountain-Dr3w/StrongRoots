@@ -30,22 +30,6 @@ const SAMPLE_BLOCK: BlockReceiptData = {
     { name: "Romanian deadlift", from: 245, to: 260, unit: "lb" },
     { name: "Chin-up", from: 5, to: 8, unit: "reps" },
   ],
-  weekIntensity: [
-    "heavy",
-    "heavy",
-    "deload",
-    "heavy",
-    "missed",
-    "heavy",
-    "heavy",
-    "deload",
-    "heavy",
-    "missed",
-    "deload",
-    "heavy",
-  ],
-  coachNote:
-    "Maya took a block to trust the cap on intensity. Week 6 is when the bar stopped feeling like the enemy. The numbers follow.",
 };
 
 const PILLARS = [
