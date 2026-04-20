@@ -164,7 +164,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="A block, accounted for"
             title="Twelve weeks, written down."
-            subtitle="A sample block from a client practice. Numbers are real, name is initialed. This is what the work adds up to at the end."
+            subtitle="An illustrative sample block. Real client numbers will replace this once one opts in to share."
             action={
               <Link href="/shop?type=plan">
                 <Button variant="tertiary" size="sm">
