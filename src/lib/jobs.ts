@@ -68,7 +68,7 @@ async function handleBookingConfirmation({ bookingId }: JobPayload["sendBookingC
   if (admin?.email) {
     await sendEmail({
       to: admin.email,
-      subject: `New booking — ${product.name}`,
+      subject: `New booking · ${product.name}`,
       template: "booking-confirmation-admin",
       react: createElement(BookingConfirmationEmail, {
         productName: product.name,

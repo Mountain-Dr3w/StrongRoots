@@ -80,7 +80,7 @@ export function SessionLog({ data }: { data: SessionLogData }) {
               {r.load}
             </span>
             <span className="hidden md:inline font-[var(--sr-font-mono)] text-[13px] text-[var(--sr-ink)] text-right">
-              {r.rpe ?? "—"}
+              {r.rpe ?? ""}
             </span>
           </div>
         ))}

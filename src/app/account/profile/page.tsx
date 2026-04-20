@@ -26,7 +26,7 @@ export default async function ProfileTab() {
           Profile.
         </h1>
         <p className="text-[var(--sr-ink-soft)] leading-[var(--sr-lh-normal)] max-w-lg">
-          Kept minimal on purpose. Email is fixed — update name and timezone below.
+          Kept minimal on purpose. Email is fixed. Update name and timezone below.
         </p>
       </header>
 
@@ -46,7 +46,7 @@ export default async function ProfileTab() {
           defaultValue={user.timezone}
           placeholder="America/New_York"
           label="Timezone"
-          hint="IANA tz — used for booking times and reminders."
+          hint="IANA tz. Used for booking times and reminders."
         />
         <div className="pt-4 flex justify-end border-t border-[var(--sr-line-soft)]">
           <Button type="submit" variant="primary" arrow={false}>

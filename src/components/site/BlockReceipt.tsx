@@ -98,7 +98,7 @@ export function BlockReceipt({ data }: { data: BlockReceiptData }) {
       {/* Week strip */}
       <div className="px-6 md:px-10 py-7 border-b border-[var(--sr-line-soft)]">
         <div className="flex items-baseline justify-between">
-          <Eyebrow>Weeks 01 — 12</Eyebrow>
+          <Eyebrow>Weeks 01 to 12</Eyebrow>
           <div className="flex gap-4 font-[var(--sr-font-mono)] text-[10px] text-[var(--sr-ink-muted)]">
             <LegendBar tone="heavy">Work</LegendBar>
             <LegendBar tone="deload">Deload</LegendBar>

@@ -1,34 +1,29 @@
-import Image from "next/image";
-
 import { cn } from "@/lib/cn";
 
-type LogoVariant = "horizontal" | "mark";
 type LogoTone = "light" | "dark";
 
 export function Logo({
-  variant = "horizontal",
   tone = "light",
-  height = 28,
+  height = 32,
   className,
-  priority,
 }: {
-  variant?: LogoVariant;
+  // Kept for API compatibility. Ignored — the logo is wordmark-only now.
+  variant?: "horizontal" | "mark";
   tone?: LogoTone;
   height?: number;
   className?: string;
   priority?: boolean;
 }) {
-  const src = `/brand/logo-grove-${variant}-${tone}.svg`;
-  const aspect = variant === "horizontal" ? 5 : 1;
-  const width = Math.round(height * aspect);
   return (
-    <Image
-      src={src}
-      alt="StrongRoots"
-      width={width}
-      height={height}
-      priority={priority}
-      className={cn("block select-none", className)}
-    />
+    <span
+      className={cn(
+        "inline-block font-[var(--sr-font-display)] leading-none tracking-[-0.005em] select-none",
+        tone === "dark" ? "text-[var(--sr-bg)]" : "text-[var(--sr-ink)]",
+        className,
+      )}
+      style={{ fontSize: `${height}px` }}
+    >
+      Strong Roots
+    </span>
   );
 }

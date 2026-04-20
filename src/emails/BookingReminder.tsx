@@ -17,7 +17,7 @@ export default function BookingReminderEmail({ productName, startAtIso }: Bookin
       <Body style={{ fontFamily: "system-ui, sans-serif", backgroundColor: "#fafafa", padding: "32px" }}>
         <Container style={{ backgroundColor: "#ffffff", padding: "32px", borderRadius: "12px", maxWidth: "480px" }}>
           <Heading>Session tomorrow</Heading>
-          <Text>{productName} — {when}</Text>
+          <Text>{productName} · {when}</Text>
           <Text>If you need to reschedule, head to your bookings page.</Text>
         </Container>
       </Body>

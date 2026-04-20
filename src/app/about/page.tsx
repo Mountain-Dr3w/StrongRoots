@@ -23,17 +23,17 @@ const PRINCIPLES = [
   {
     title: "Training should repair, not punish.",
     body:
-      "Programs progress in blocks. Sessions check in. Loads go up because the body is ready, not because the calendar says so.",
+      "Programs progress in blocks. Sessions check in. Loads go up when the body is ready, not because the calendar says so.",
   },
   {
     title: "Strength is a practice, not a project.",
     body:
-      "No transformations. No before/after. Just reps, weeks, and the slow compound of doing the work most days.",
+      "Reps, weeks, and the slow compound of doing the work most days. No before/after photos. No transformation language.",
   },
   {
     title: "If a plan doesn't fit, we talk.",
     body:
-      "Consulting is a conversation. The 12-week program you bought is a starting point — not a contract.",
+      "Consulting is a conversation. The 12-week program you bought is where we start, not where we're stuck.",
   },
 ];
 
@@ -49,9 +49,8 @@ export default function AboutPage() {
               Ashlyn trains people for the long arc.
             </h1>
             <p className="mt-8 text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-lg">
-              A coach who turned her own recovery into a system. She works mostly online, keeps a
-              handful of 1:1 consulting slots each week, and programs with the calm of someone who
-              has already earned back what she lost.
+              A coach who turned her own recovery into a system. She works mostly online and keeps
+              a handful of 1:1 consulting slots each week.
             </p>
           </div>
           <StripedPlaceholder
@@ -98,7 +97,7 @@ export default function AboutPage() {
                 "repair",
               ].map((word) => (
                 <li key={word} className="text-[var(--sr-ink)] text-[17px]">
-                  — {word}
+                  · {word}
                 </li>
               ))}
             </ul>
@@ -112,7 +111,7 @@ export default function AboutPage() {
                     key={word}
                     className="text-[var(--sr-ink-muted)] text-[17px] line-through"
                   >
-                    — {word}
+                    · {word}
                   </li>
                 ),
               )}

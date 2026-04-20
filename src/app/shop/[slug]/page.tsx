@@ -55,14 +55,14 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
 
 const SAMPLE_SESSION: SessionLogData = {
   dayLabel: "Day 24",
-  blockLabel: "Block 02 — Build",
+  blockLabel: "Block 02 · Build",
   sessionTitle: "Lower · Heavy",
   durationMinutes: 45,
   rows: [
     { slot: "A1", exercise: "Back squat", scheme: "4 × 5", load: "225 lb", rpe: "7" },
     { slot: "A2", exercise: "Romanian deadlift", scheme: "3 × 8", load: "185 lb", rpe: "6" },
     { slot: "B1", exercise: "Bulgarian split squat", scheme: "3 × 10", load: "BW + 20", rpe: "7" },
-    { slot: "B2", exercise: "Ab rollout", scheme: "3 × 12", load: "—", rpe: null },
+    { slot: "B2", exercise: "Ab rollout", scheme: "3 × 12", load: "BW", rpe: null },
     {
       slot: "C",
       exercise: "Sled push",
@@ -73,7 +73,7 @@ const SAMPLE_SESSION: SessionLogData = {
     },
   ],
   coachNote:
-    "Cap RPE at 7 through the build block so we can carry the load into test week. If the last set of squats feels like a 9, stop there — log the rep count and we adjust.",
+    "Cap RPE at 7 through the build block so we can carry the load into test week. If the last set of squats feels like a 9, stop there. Log the rep count and we'll adjust.",
 };
 
 const FAQ_ITEMS = [
@@ -154,9 +154,9 @@ export default async function ProductDetailPage({ params }: { params: PageParams
                 {plan ? (
                   <>
                     <Bullet>A {plan.weeks}-week progressive program built in blocks</Bullet>
-                    <Bullet>Level-matched loading — {plan.level}</Bullet>
+                    <Bullet>Programmed for {plan.level}</Bullet>
                     <Bullet>Downloadable content bundle with video demos</Bullet>
-                    <Bullet>Lifetime access — no subscription</Bullet>
+                    <Bullet>Lifetime access. No subscription.</Bullet>
                   </>
                 ) : null}
                 {offering ? (
@@ -165,12 +165,12 @@ export default async function ProductDetailPage({ params }: { params: PageParams
                       {offering.durationMinutes}-minute 1:1 video session with Ashlyn
                     </Bullet>
                     {offering.requiresIntake ? (
-                      <Bullet>Intake form to tailor the session ahead of the call</Bullet>
+                      <Bullet>Intake form you fill out before the call</Bullet>
                     ) : null}
                     {offering.requiresDeposit ? (
                       <Bullet>Deposit charged at booking, applied to your month</Bullet>
                     ) : null}
-                    <Bullet>Follow-up notes and prescribed work delivered after each call</Bullet>
+                    <Bullet>Follow-up notes and next-session work after each call</Bullet>
                   </>
                 ) : null}
               </ul>
@@ -263,7 +263,7 @@ function Meta({ label, value }: { label: string; value: string }) {
 function Bullet({ children }: { children: React.ReactNode }) {
   return (
     <li className="flex gap-3">
-      <span className="text-[var(--sr-ink-muted)] font-semibold shrink-0">—</span>
+      <span className="text-[var(--sr-ink-muted)] font-semibold shrink-0">·</span>
       <span>{children}</span>
     </li>
   );

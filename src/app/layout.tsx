@@ -28,9 +28,9 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: {
     default: "StrongRoots",
-    template: "%s — StrongRoots",
+    template: "%s · StrongRoots",
   },
-  description: "Train with Ashlyn — digital plans and 1:1 consulting.",
+  description: "Train with Ashlyn. Digital plans and 1:1 consulting.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,

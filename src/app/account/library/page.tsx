@@ -66,7 +66,7 @@ export default async function LibraryPage() {
           Library.
         </h1>
         <p className="text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-xl">
-          Everything you've purchased — plans, content bundles, and session receipts.
+          Everything you've purchased. Plans, content bundles, and session receipts.
         </p>
       </header>
 
@@ -107,7 +107,7 @@ export default async function LibraryPage() {
                   <CardTitle className="mb-0">{r.productName}</CardTitle>
                   {r.productType === "consulting" ? (
                     <p className="text-[var(--sr-ink-soft)]">
-                      Consulting session — manage from the{" "}
+                      Consulting session. Manage from the{" "}
                       <Link
                         href="/account/bookings"
                         className="underline decoration-[var(--sr-line)] underline-offset-4 hover:text-[var(--sr-ink)]"

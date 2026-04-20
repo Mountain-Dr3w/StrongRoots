@@ -20,7 +20,7 @@ export default async function AccountLayout({ children }: { children: ReactNode 
       <header className="border-b border-[var(--sr-line-soft)]">
         <div className="max-w-5xl mx-auto flex items-center justify-between gap-6 px-6 md:px-10 pt-5 pb-4">
           <Link href="/" aria-label="Home">
-            <Logo variant="horizontal" tone="light" height={22} />
+            <Logo tone="light" height={20} />
           </Link>
           <form
             action={async () => {

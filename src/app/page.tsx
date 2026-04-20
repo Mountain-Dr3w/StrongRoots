@@ -18,7 +18,7 @@ const SAMPLE_BLOCK: BlockReceiptData = {
   clientInitial: "M.R.",
   programName: "Built to Last",
   programNumber: "01",
-  dateRange: "Jan 08 — Apr 02",
+  dateRange: "Jan 8 to Apr 2",
   sessionsCompleted: 42,
   sessionsProgrammed: 48,
   loadDeltaPct: 34,
@@ -53,7 +53,7 @@ const PILLARS = [
     eyebrow: "Programs",
     title: "Plans, on demand",
     body:
-      "Eight to sixteen-week programs. Full PDFs and video demonstrations. Train on your schedule without losing the arc.",
+      "Eight to sixteen-week programs. Full PDFs and video demonstrations. Train on your schedule.",
     href: "/shop?type=plan",
     cta: "Browse plans",
     label: "rack work",
@@ -63,7 +63,7 @@ const PILLARS = [
     eyebrow: "Consulting",
     title: "Work with Ashlyn",
     body:
-      "Monthly 1:1 consulting in three tiers. Weekly video check-ins, form review, and programs built around your season.",
+      "Monthly 1:1 consulting in three tiers. Weekly video check-ins, form review, and programs built to match your training block.",
     href: "/shop?type=consulting",
     cta: "See tiers",
     label: "check-in",
@@ -107,7 +107,7 @@ export default function Home() {
                 Build strength that stays.
               </h1>
               <p className="mt-6 text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-lg">
-                Structured programs and 1:1 consulting from Ashlyn — for people who are tired of starting over. Train for the long arc.
+                Structured programs and 1:1 consulting from Ashlyn, for people who are tired of starting over. Train for the long arc.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link href="/shop?type=plan">
@@ -131,8 +131,8 @@ export default function Home() {
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
           <SectionHeading
             eyebrow="The practice"
-            title="Three disciplines. One arc."
-            subtitle="Programs, consulting, and nutrition. Pick one or stack them — the goal is the same: sustainable strength you keep."
+            title="What's on offer."
+            subtitle="Programs, consulting, and nutrition. Pick one or stack them. The goal is the same: sustainable strength you keep."
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {PILLARS.map((pillar) => (
@@ -180,7 +180,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="A block, accounted for"
             title="Twelve weeks, written down."
-            subtitle="No transformation language. Just the receipt at the end. This is a sample block drawn from a client practice — numbers preserved, name initialed."
+            subtitle="A sample block from a client practice. Numbers are real, name is initialed. This is what the work adds up to at the end."
             action={
               <Link href="/shop?type=plan">
                 <Button variant="tertiary" size="sm">

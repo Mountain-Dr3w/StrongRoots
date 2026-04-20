@@ -25,7 +25,7 @@ export default function BookingConfirmationEmail({
         <Container style={{ backgroundColor: "#ffffff", padding: "32px", borderRadius: "12px", maxWidth: "480px" }}>
           <Heading>{forAdmin ? "New booking" : "You're booked"}</Heading>
           <Text>
-            {productName} — {when}
+            {productName} · {when}
           </Text>
           {forAdmin && userEmail ? <Text>Customer: {userEmail}</Text> : null}
           {!forAdmin ? <Text>We'll send a reminder 24 hours before.</Text> : null}

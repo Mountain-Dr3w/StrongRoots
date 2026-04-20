@@ -11,7 +11,7 @@ export default function SignInPage() {
     <main className="min-h-screen flex items-center justify-center px-6 py-16 bg-[var(--sr-bg)]">
       <div className="w-full max-w-md flex flex-col gap-10">
         <Link href="/" aria-label="Home" className="self-start">
-          <Logo variant="horizontal" tone="light" height={22} priority />
+          <Logo tone="light" height={20} priority />
         </Link>
 
         <div className="flex flex-col gap-4">
@@ -20,7 +20,7 @@ export default function SignInPage() {
             Welcome back.
           </h1>
           <p className="text-[var(--sr-ink-soft)] leading-[var(--sr-lh-normal)]">
-            Enter your email — we'll send you a magic link. No password to remember.
+            Enter your email. We'll send you a magic link. No password to remember.
           </p>
         </div>
 

@@ -20,7 +20,7 @@ export default function ContactPage() {
             </h1>
             <p className="text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-xl">
               For booking questions, use the session CTA on the shop page. For everything
-              else — a note to the address below is the fastest way through.
+              else, a note to the address below is the fastest way through.
             </p>
           </div>
 
