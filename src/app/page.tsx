@@ -9,9 +9,9 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
 
 const HERO_PANES = [
-  { label: "01 · warmup", src: "/stock/hero-warmup.jpg" },
-  { label: "02 · lift", src: "/stock/hero-lift.jpg" },
-  { label: "03 · recover", src: "/stock/hero-recover.jpg" },
+  { label: "01 · program", src: "/stock/hero-lift.jpg" },
+  { label: "02 · consult", src: "/stock/consulting.jpg" },
+  { label: "03 · nourish", src: "/stock/nutrition.jpg" },
 ];
 
 const SAMPLE_BLOCK: BlockReceiptData = {
