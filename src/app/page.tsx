@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { Button } from "@/components/Button";
 import { Card, CardBody, CardImage, CardTitle } from "@/components/Card";
+import { BlockReceipt, type BlockReceiptData } from "@/components/site/BlockReceipt";
 import { Eyebrow } from "@/components/site/Eyebrow";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { SiteShell } from "@/components/site/SiteShell";
@@ -12,6 +13,40 @@ const HERO_PANES = [
   { label: "02 · lift", src: "/stock/hero-lift.jpg" },
   { label: "03 · recover", src: "/stock/hero-recover.jpg" },
 ];
+
+const SAMPLE_BLOCK: BlockReceiptData = {
+  clientInitial: "M.R.",
+  programName: "Built to Last",
+  programNumber: "01",
+  dateRange: "Jan 08 — Apr 02",
+  sessionsCompleted: 42,
+  sessionsProgrammed: 48,
+  loadDeltaPct: 34,
+  missedCount: 2,
+  missedNote: "both conditioning days",
+  lifts: [
+    { name: "Back squat", from: 205, to: 225, unit: "lb" },
+    { name: "Bench press", from: 155, to: 165, unit: "lb" },
+    { name: "Romanian deadlift", from: 245, to: 260, unit: "lb" },
+    { name: "Chin-up", from: 5, to: 8, unit: "reps" },
+  ],
+  weekIntensity: [
+    "heavy",
+    "heavy",
+    "deload",
+    "heavy",
+    "missed",
+    "heavy",
+    "heavy",
+    "deload",
+    "heavy",
+    "missed",
+    "deload",
+    "heavy",
+  ],
+  coachNote:
+    "Maya took a block to trust the cap on intensity. Week 6 is when the bar stopped feeling like the enemy. The numbers follow.",
+};
 
 const PILLARS = [
   {
@@ -139,18 +174,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Voice strip ────────────────────────────────────────── */}
+      {/* ── Block receipt — the training-tool anchor ──────────── */}
       <section className="px-6 md:px-10 pb-24 md:pb-32">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-start pt-12 border-t border-[var(--sr-line-soft)]">
-          <Eyebrow>Voice · how we talk about training</Eyebrow>
-          <div>
-            <p className="font-[var(--sr-font-display)] text-[28px] md:text-[36px] leading-[var(--sr-lh-snug)] text-[var(--sr-ink)]">
-              Training practice. Long arc. Sustainable strength.
-            </p>
-            <p className="mt-4 text-[var(--sr-ink-soft)] leading-[var(--sr-lh-relaxed)]">
-              Not crush it, not beast mode, not transformation. Just steady work, repaired back, and a body you can live in for decades.
-            </p>
-          </div>
+        <div className="max-w-6xl mx-auto flex flex-col gap-10">
+          <SectionHeading
+            eyebrow="A block, accounted for"
+            title="Twelve weeks, written down."
+            subtitle="No transformation language. Just the receipt at the end. This is a sample block drawn from a client practice — numbers preserved, name initialed."
+            action={
+              <Link href="/shop?type=plan">
+                <Button variant="tertiary" size="sm">
+                  Browse programs
+                </Button>
+              </Link>
+            }
+          />
+          <BlockReceipt data={SAMPLE_BLOCK} />
         </div>
       </section>
     </SiteShell>

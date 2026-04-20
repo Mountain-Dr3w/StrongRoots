@@ -6,6 +6,7 @@ import { db, schema } from "@/db";
 import { Button } from "@/components/Button";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { Eyebrow } from "@/components/site/Eyebrow";
+import { SessionLog, type SessionLogData } from "@/components/site/SessionLog";
 import { SiteShell } from "@/components/site/SiteShell";
 import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
 import { buyPlanAction, bookConsultingAction } from "./actions";
@@ -51,6 +52,29 @@ export async function generateMetadata({ params }: { params: PageParams }): Prom
     },
   };
 }
+
+const SAMPLE_SESSION: SessionLogData = {
+  dayLabel: "Day 24",
+  blockLabel: "Block 02 — Build",
+  sessionTitle: "Lower · Heavy",
+  durationMinutes: 45,
+  rows: [
+    { slot: "A1", exercise: "Back squat", scheme: "4 × 5", load: "225 lb", rpe: "7" },
+    { slot: "A2", exercise: "Romanian deadlift", scheme: "3 × 8", load: "185 lb", rpe: "6" },
+    { slot: "B1", exercise: "Bulgarian split squat", scheme: "3 × 10", load: "BW + 20", rpe: "7" },
+    { slot: "B2", exercise: "Ab rollout", scheme: "3 × 12", load: "—", rpe: null },
+    {
+      slot: "C",
+      exercise: "Sled push",
+      scheme: "5 × 20 yd",
+      load: "+90 lb",
+      rpe: null,
+      notes: "walking pace, nasal breathing",
+    },
+  ],
+  coachNote:
+    "Cap RPE at 7 through the build block so we can carry the load into test week. If the last set of squats feels like a 9, stop there — log the rep count and we adjust.",
+};
 
 const FAQ_ITEMS = [
   {
@@ -151,6 +175,17 @@ export default async function ProductDetailPage({ params }: { params: PageParams
                 ) : null}
               </ul>
             </div>
+
+            {/* Sample session — plans only */}
+            {product.type === "plan" ? (
+              <div className="flex flex-col gap-4">
+                <Eyebrow>What a session looks like</Eyebrow>
+                <SessionLog data={SAMPLE_SESSION} />
+                <p className="font-[var(--sr-font-mono)] text-[11px] text-[var(--sr-ink-muted)]">
+                  Sample session from Built to Last · block 02, week 8.
+                </p>
+              </div>
+            ) : null}
 
             {/* Price + CTA */}
             <div className="flex flex-wrap items-end justify-between gap-6 pt-6 border-t border-[var(--sr-line-soft)]">
