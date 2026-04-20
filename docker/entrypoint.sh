@@ -7,7 +7,7 @@ if [ -z "${DATABASE_URL}" ]; then
 fi
 
 echo "[entrypoint] applying schema via drizzle-kit push..."
-node /app/node_modules/drizzle-kit/bin.cjs push
+node /app/node_modules/drizzle-kit/bin.cjs push --config=drizzle.config.mjs
 
 echo "[entrypoint] starting Next.js server..."
 exec "$@"
