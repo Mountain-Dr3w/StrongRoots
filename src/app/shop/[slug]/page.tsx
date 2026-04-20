@@ -110,7 +110,7 @@ export default async function ProductDetailPage({ params }: { params: PageParams
           {/* Visual */}
           <StripedPlaceholder
             label={`${typeLabel.toLowerCase()} · ${product.slug}`}
-            src={product.type === "plan" ? "/stock/plan-rack.jpg" : "/stock/consulting.jpg"}
+            src={product.type === "plan" ? "/stock/plan-rack.jpg" : "/stock/consult.jpg"}
             aspect="4/5"
             className="w-full md:sticky md:top-28"
             priority

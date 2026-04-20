@@ -16,7 +16,7 @@ function formatPrice(cents: number): string {
 }
 
 const PLAN_COVERS = ["/stock/plan-rack.jpg", "/stock/plan-onboarding.jpg", "/stock/plan-back.jpg"];
-const CONSULTING_COVERS = ["/stock/consulting.jpg", "/stock/nutrition.jpg", "/stock/portrait.jpg"];
+const CONSULTING_COVERS = ["/stock/consult.jpg", "/stock/nutrition.jpg", "/stock/portrait.jpg"];
 
 function coverFor(type: "plan" | "consulting", idx: number): string {
   const pool = type === "plan" ? PLAN_COVERS : CONSULTING_COVERS;

@@ -81,7 +81,7 @@ export default async function BookPage({ params }: { params: PageParams }) {
           <aside className="md:sticky md:top-28 flex flex-col gap-6">
             <StripedPlaceholder
               label={`${product.slug} · intake`}
-              src="/stock/consulting.jpg"
+              src="/stock/consult.jpg"
               aspect="4/5"
               priority
             />

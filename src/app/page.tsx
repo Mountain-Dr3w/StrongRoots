@@ -10,7 +10,7 @@ import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
 
 const HERO_PANES = [
   { label: "01 · program", src: "/stock/hero-lift.jpg" },
-  { label: "02 · consult", src: "/stock/consulting.jpg" },
+  { label: "02 · consult", src: "/stock/consult.jpg" },
   { label: "03 · nourish", src: "/stock/nutrition.jpg" },
 ];
 
@@ -51,7 +51,7 @@ const PILLARS = [
     href: "/shop?type=consulting",
     cta: "See tiers",
     label: "check-in",
-    src: "/stock/consulting.jpg",
+    src: "/stock/consult.jpg",
   },
   {
     eyebrow: "Nutrition",
