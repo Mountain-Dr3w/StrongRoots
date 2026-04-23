@@ -10,14 +10,14 @@ export function SiteFooter() {
         <div className="flex flex-col gap-5 max-w-sm">
           <Logo tone="light" height={22} />
           <p className="text-[var(--sr-ink-soft)] text-[15px] leading-[var(--sr-lh-normal)]">
-            Training for the long arc. Programs, consulting, and nutrition practice from Ashlyn.
+            Programs, consulting, and nutrition with Ashlyn.
           </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 gap-10 text-[14px]">
           <div className="flex flex-col gap-3">
             <div className="font-[var(--sr-font-label)] text-[10px] uppercase tracking-[var(--sr-label-tracking)] text-[var(--sr-ink-muted)]">
-              Train
+              Shop
             </div>
             <Link href="/shop?type=plan" className="text-[var(--sr-ink-soft)] hover:text-[var(--sr-ink)]">
               Programs
@@ -28,7 +28,7 @@ export function SiteFooter() {
           </div>
           <div className="flex flex-col gap-3">
             <div className="font-[var(--sr-font-label)] text-[10px] uppercase tracking-[var(--sr-label-tracking)] text-[var(--sr-ink-muted)]">
-              Practice
+              Company
             </div>
             <Link href="/about" className="text-[var(--sr-ink-soft)] hover:text-[var(--sr-ink)]">
               About

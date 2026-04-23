@@ -61,7 +61,7 @@ export default async function LibraryPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 md:px-10 py-12 md:py-16 flex flex-col gap-10">
       <header className="flex flex-col gap-3">
-        <Eyebrow>Your practice</Eyebrow>
+        <Eyebrow>Your account</Eyebrow>
         <h1 className="font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] md:text-[56px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">
           Library.
         </h1>

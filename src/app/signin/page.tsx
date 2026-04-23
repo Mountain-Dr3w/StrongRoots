@@ -65,7 +65,7 @@ export default function SignInPage() {
         </form>
 
         <p className="font-[var(--sr-font-mono)] text-[11px] text-[var(--sr-ink-muted)] text-center">
-          By signing in you agree to the practice norms.{" "}
+          By signing in you agree to the terms.{" "}
           <Link href="/about" className="underline underline-offset-4 hover:text-[var(--sr-ink)]">
             Read more
           </Link>

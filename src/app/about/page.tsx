@@ -6,8 +6,7 @@ import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
 
 export const metadata: Metadata = {
   title: "About",
-  description:
-    "Ashlyn is a trainer who turned her own recovery into a system others can use.",
+  description: "Ashlyn is an online personal trainer.",
 };
 
 const personLd = {
@@ -21,14 +20,14 @@ const personLd = {
 
 const PRINCIPLES = [
   {
-    title: "Training should repair, not punish.",
+    title: "Progress in blocks.",
     body:
-      "Programs progress in blocks. Sessions check in. Loads go up when the body is ready, not because the calendar says so.",
+      "Sessions check in along the way. Loads go up when you're ready, not because the calendar says so.",
   },
   {
-    title: "Strength is a practice, not a project.",
+    title: "Built week by week.",
     body:
-      "Reps, weeks, and the slow compound of doing the work most days. No before/after photos. No transformation language.",
+      "Consistent reps and weeks of training, most days. No before/after photos.",
   },
   {
     title: "If a plan doesn't fit, we talk.",
@@ -44,13 +43,13 @@ export default function AboutPage() {
       <section className="px-6 md:px-10 pt-12 md:pt-20 pb-20">
         <div className="max-w-6xl mx-auto grid md:grid-cols-[1.1fr_0.9fr] gap-10 md:gap-16 items-end">
           <div>
-            <Eyebrow>About the practice</Eyebrow>
+            <Eyebrow>About</Eyebrow>
             <h1 className="mt-5 font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] sm:text-[64px] md:text-[88px] leading-[0.98] tracking-[-0.025em] text-balance">
-              Ashlyn trains people for the long arc.
+              Ashlyn trains people online.
             </h1>
             <p className="mt-8 text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-lg">
-              A coach who turned her own recovery into a system. She works mostly online and keeps
-              a handful of 1:1 consulting slots each week.
+              A coach who works mostly online and keeps a handful of 1:1 consulting slots
+              each week.
             </p>
           </div>
           <StripedPlaceholder
@@ -78,44 +77,6 @@ export default function AboutPage() {
                 </p>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Voice ──────────────────────────────────────────────── */}
-      <section className="px-6 md:px-10 pb-24 md:pb-32">
-        <div className="max-w-6xl mx-auto border-t border-[var(--sr-line-soft)] pt-16 grid md:grid-cols-2 gap-12">
-          <div>
-            <Eyebrow>We say</Eyebrow>
-            <ul className="mt-6 flex flex-col gap-3">
-              {[
-                "training practice",
-                "long arc",
-                "sustainable strength",
-                "check-in",
-                "block",
-                "repair",
-              ].map((word) => (
-                <li key={word} className="text-[var(--sr-ink)] text-[17px]">
-                  · {word}
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div>
-            <Eyebrow>We don't</Eyebrow>
-            <ul className="mt-6 flex flex-col gap-3">
-              {["shred", "crush it", "beast mode", "hack", "transformation", "guru"].map(
-                (word) => (
-                  <li
-                    key={word}
-                    className="text-[var(--sr-ink-muted)] text-[17px] line-through"
-                  >
-                    · {word}
-                  </li>
-                ),
-              )}
-            </ul>
           </div>
         </div>
       </section>

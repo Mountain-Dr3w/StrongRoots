@@ -55,9 +55,9 @@ const PILLARS = [
   },
   {
     eyebrow: "Nutrition",
-    title: "Eat for the long arc",
+    title: "Nutrition, built in",
     body:
-      "Macro targets and food frameworks bundled into Practice and Performance. Food is training you do three times a day.",
+      "Macro targets and food frameworks included with consulting.",
     href: "/shop?type=consulting",
     cta: "Book intake",
     label: "plate",
@@ -86,12 +86,12 @@ export default function Home() {
 
           <div className="relative md:-mt-24 mt-6">
             <div className="bg-[var(--sr-bg)] md:pt-8 md:pr-10 md:pb-8 py-6 max-w-2xl md:border-r md:border-t border-[var(--sr-line-soft)]">
-              <Eyebrow>Strong Roots · Est. training practice</Eyebrow>
+              <Eyebrow>Online training</Eyebrow>
               <h1 className="mt-4 font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] sm:text-[64px] md:text-[72px] leading-[0.98] tracking-[-0.02em] text-balance">
-                Build strength that stays.
+                Strength training that sticks.
               </h1>
               <p className="mt-6 text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-lg">
-                Structured programs and 1:1 consulting from Ashlyn, for people who are tired of starting over. Train for the long arc.
+                Structured programs and 1:1 consulting with Ashlyn.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link href="/shop?type=plan">
@@ -114,9 +114,9 @@ export default function Home() {
       <section className="px-6 md:px-10 pb-24 md:pb-32">
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
           <SectionHeading
-            eyebrow="The practice"
+            eyebrow="What we offer"
             title="What's on offer."
-            subtitle="Programs, consulting, and nutrition. Pick one or stack them. The goal is the same: sustainable strength you keep."
+            subtitle="Programs, consulting, and nutrition. Pick one or stack them."
           />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {PILLARS.map((pillar) => (
@@ -162,8 +162,8 @@ export default function Home() {
       <section className="px-6 md:px-10 pb-24 md:pb-32">
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
           <SectionHeading
-            eyebrow="A block, accounted for"
-            title="Twelve weeks, written down."
+            eyebrow="Sample block"
+            title="Twelve-week training block."
             subtitle="An illustrative sample block. Real client numbers will replace this once one opts in to share."
             action={
               <Link href="/shop?type=plan">
