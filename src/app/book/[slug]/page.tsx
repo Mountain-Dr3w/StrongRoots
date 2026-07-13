@@ -81,12 +81,13 @@ export default async function BookPage({ params }: { params: PageParams }) {
           <aside className="md:sticky md:top-28 flex flex-col gap-6">
             <StripedPlaceholder
               label={`${product.slug} · intake`}
-              src="/stock/trainer.jpg"
+              src="/editorial/coaching-review.jpg"
+              alt="A coach reviewing exercise footage beside a training notebook"
               aspect="4/5"
               priority
             />
             <div className="flex flex-col gap-3">
-              <Eyebrow>Book a session</Eyebrow>
+              <Eyebrow>Choose a coaching time</Eyebrow>
               <h1 className="font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[40px] md:text-[48px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">
                 {product.name}
               </h1>
@@ -107,7 +108,7 @@ export default async function BookPage({ params }: { params: PageParams }) {
                   Create an account to book.
                 </h2>
                 <p className="text-[var(--sr-ink-soft)]">
-                  Ashlyn needs your email to send confirmation and reminders.
+                  Your account keeps the booking, confirmation, and reminders in one place.
                 </p>
                 <Link href="/signin" className="self-start">
                   <Button variant="primary">Sign in</Button>
@@ -120,7 +121,7 @@ export default async function BookPage({ params }: { params: PageParams }) {
                   Check back soon.
                 </h2>
                 <p className="text-[var(--sr-ink-soft)]">
-                  Ashlyn opens new times weekly. You can also{" "}
+                  New coaching times are added weekly. You can also{" "}
                   <Link
                     href="/contact"
                     className="underline decoration-[var(--sr-line)] underline-offset-4 hover:text-[var(--sr-ink)]"

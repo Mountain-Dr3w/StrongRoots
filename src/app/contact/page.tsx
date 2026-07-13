@@ -5,7 +5,7 @@ import { SiteShell } from "@/components/site/SiteShell";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Reach Ashlyn by email.",
+  description: "Ask Ashlyn about Strong Roots programs or coaching.",
 };
 
 export default function ContactPage() {
@@ -16,11 +16,12 @@ export default function ContactPage() {
           <div className="flex flex-col gap-4">
             <Eyebrow>Get in touch</Eyebrow>
             <h1 className="font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] md:text-[64px] leading-[var(--sr-lh-tight)] tracking-[-0.02em]">
-              Say hello.
+              Ask about the work.
             </h1>
             <p className="text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-xl">
-              For booking questions, use the session CTA on the shop page. For everything
-              else, a note to the address below is the fastest way through.
+              Have a question about a program, coaching availability, or where to start?
+              Send Ashlyn a note below. Existing clients can use their account for booking
+              details and purchased programs.
             </p>
           </div>
 

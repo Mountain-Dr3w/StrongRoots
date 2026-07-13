@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="flex flex-col gap-5 max-w-sm">
           <Logo tone="light" height={22} />
           <p className="text-[var(--sr-ink-soft)] text-[15px] leading-[var(--sr-lh-normal)]">
-            Programs, consulting, and nutrition with Ashlyn.
+            Sustainable strength programs and 1:1 coaching with Ashlyn.
           </p>
         </div>
 
@@ -23,7 +23,7 @@ export function SiteFooter() {
               Programs
             </Link>
             <Link href="/shop?type=consulting" className="text-[var(--sr-ink-soft)] hover:text-[var(--sr-ink)]">
-              Consulting
+              Coaching
             </Link>
           </div>
           <div className="flex flex-col gap-3">

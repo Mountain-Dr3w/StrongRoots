@@ -91,17 +91,17 @@ export function BookingForm({ offeringId, requiresIntake, slots }: Props) {
 
       {requiresIntake ? (
         <div className="flex flex-col gap-6 pt-6 border-t border-[var(--sr-line-soft)]">
-          <Eyebrow>Tell Ashlyn about you</Eyebrow>
+          <Eyebrow>Give Ashlyn some context</Eyebrow>
           <Input
             name="intake_goals"
             label="Goals"
             required
-            placeholder="What do you want out of this?"
+            placeholder="What would make this coaching useful right now?"
           />
           <Input
             name="intake_injuries"
             label="Injuries"
-            placeholder="None, or describe"
+            placeholder="Anything that should shape the training"
           />
         </div>
       ) : null}

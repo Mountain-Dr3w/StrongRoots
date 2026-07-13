@@ -30,7 +30,8 @@ export const metadata: Metadata = {
     default: "StrongRoots",
     template: "%s · StrongRoots",
   },
-  description: "Train with Ashlyn. Digital plans and 1:1 consulting.",
+  description:
+    "Sustainable strength programs and 1:1 coaching with Ashlyn at Strong Roots.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,

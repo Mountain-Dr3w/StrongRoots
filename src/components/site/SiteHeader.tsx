@@ -6,7 +6,7 @@ import { Logo } from "./Logo";
 
 const nav: Array<{ href: string; label: string }> = [
   { href: "/shop?type=plan", label: "Programs" },
-  { href: "/shop?type=consulting", label: "Consulting" },
+  { href: "/shop?type=consulting", label: "Coaching" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ];

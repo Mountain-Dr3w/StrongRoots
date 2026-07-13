@@ -15,8 +15,16 @@ function formatPrice(cents: number): string {
   return `$${(cents / 100).toFixed(0)}`;
 }
 
-const PLAN_COVERS = ["/stock/plan-rack.jpg", "/stock/plan-onboarding.jpg", "/stock/plan-back.jpg"];
-const CONSULTING_COVERS = ["/stock/trainer.jpg", "/stock/nutrition.jpg", "/stock/portrait.jpg"];
+const PLAN_COVERS = [
+  "/editorial/barbell-setup.jpg",
+  "/editorial/training-log.jpg",
+  "/editorial/coaching-review.jpg",
+];
+const CONSULTING_COVERS = [
+  "/editorial/coaching-review.jpg",
+  "/editorial/training-log.jpg",
+  "/editorial/barbell-setup.jpg",
+];
 
 function coverFor(type: "plan" | "consulting", idx: number): string {
   const pool = type === "plan" ? PLAN_COVERS : CONSULTING_COVERS;
@@ -43,25 +51,25 @@ export default async function ShopPage({ searchParams }: { searchParams: ShopSea
       <section className="px-6 md:px-10 pt-12 md:pt-20 pb-24 md:pb-32">
         <div className="max-w-6xl mx-auto flex flex-col gap-12">
           <SectionHeading
-            eyebrow="Applications · Digital plans"
+            eyebrow="Programs · Coaching"
             title={
               filter === "consulting"
-                ? "Work with Ashlyn."
+                ? "Ongoing coaching."
                 : filter === "plan"
-                  ? "Programs, on demand."
-                  : "The whole shop."
+                  ? "Strength programs."
+                  : "Choose how you want to train."
             }
-            subtitle="Buy a plan for lifetime access, or book a consulting slot for a monthly conversation."
+            subtitle="Buy a complete program once, or choose monthly coaching for programming, form review, and ongoing adjustments."
             action={
               <nav className="flex gap-2" aria-label="Filter products">
                 <FilterLink current={filter} value={undefined}>
                   All
                 </FilterLink>
                 <FilterLink current={filter} value="plan">
-                  Plans
+                  Programs
                 </FilterLink>
                 <FilterLink current={filter} value="consulting">
-                  Consulting
+                  Coaching
                 </FilterLink>
               </nav>
             }
@@ -69,7 +77,8 @@ export default async function ShopPage({ searchParams }: { searchParams: ShopSea
 
           {products.length === 0 ? (
             <p className="text-[var(--sr-ink-soft)] text-[17px]">
-              No products yet.
+              Nothing is available in this category yet. Check back soon or contact Ashlyn
+              about the next opening.
             </p>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -80,6 +89,11 @@ export default async function ShopPage({ searchParams }: { searchParams: ShopSea
                       <StripedPlaceholder
                         label={p.type === "plan" ? `plan · ${p.slug}` : `${p.slug} · 1:1`}
                         src={coverFor(p.type, idx)}
+                        alt={
+                          p.type === "plan"
+                            ? "Strength training equipment and a working training log"
+                            : "A coach reviewing exercise footage and training notes"
+                        }
                         aspect={false}
                         className="h-full"
                       />
@@ -87,7 +101,9 @@ export default async function ShopPage({ searchParams }: { searchParams: ShopSea
                     <CardBody className="flex flex-col gap-3 flex-1">
                       <div className="flex items-baseline justify-between gap-4">
                         <Eyebrow className="text-[10px]">
-                          Program №{String(idx + 1).padStart(2, "0")}
+                          {p.type === "plan"
+                            ? `Program №${String(idx + 1).padStart(2, "0")}`
+                            : "Coaching"}
                         </Eyebrow>
                         <span className="font-[var(--sr-font-mono)] text-[11px] text-[var(--sr-ink-muted)]">
                           {p.type === "plan" ? "Lifetime" : "Monthly"}
@@ -104,7 +120,7 @@ export default async function ShopPage({ searchParams }: { searchParams: ShopSea
                           {formatPrice(p.priceCents)}
                         </span>
                         <span className="inline-flex items-center gap-2 font-[var(--sr-font-label)] text-[11px] uppercase tracking-[var(--sr-label-tracking)] text-[var(--sr-ink)] font-semibold">
-                          View plan
+                          {p.type === "plan" ? "View program" : "View coaching"}
                           <svg width="10" height="10" viewBox="0 0 14 14" fill="none" aria-hidden>
                             <path
                               d="M1 7h12M8 2l5 5-5 5"

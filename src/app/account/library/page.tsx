@@ -66,7 +66,7 @@ export default async function LibraryPage() {
           Library.
         </h1>
         <p className="text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-xl">
-          Everything you've purchased. Plans, content bundles, and session receipts.
+          Your purchased programs, content bundles, and coaching receipts in one place.
         </p>
       </header>
 
@@ -74,7 +74,7 @@ export default async function LibraryPage() {
         <Card>
           <CardBody>
             <p className="text-[var(--sr-ink-soft)]">
-              You haven't purchased any plans yet.{" "}
+              You do not have any programs yet.{" "}
               <Link
                 href="/shop"
                 className="underline decoration-[var(--sr-line)] underline-offset-4 hover:text-[var(--sr-ink)]"
@@ -95,7 +95,7 @@ export default async function LibraryPage() {
                 <CardBody className="flex flex-col gap-4">
                   <div className="flex items-baseline justify-between gap-4 flex-wrap">
                     <Eyebrow>
-                      {r.productType === "consulting" ? "Consulting" : "Plan"}
+                      {r.productType === "consulting" ? "Coaching" : "Program"}
                     </Eyebrow>
                     <Link
                       href={`/shop/${r.productSlug}`}
@@ -107,7 +107,7 @@ export default async function LibraryPage() {
                   <CardTitle className="mb-0">{r.productName}</CardTitle>
                   {r.productType === "consulting" ? (
                     <p className="text-[var(--sr-ink-soft)]">
-                      Consulting session. Manage from the{" "}
+                      Coaching session. Manage it from the{" "}
                       <Link
                         href="/account/bookings"
                         className="underline decoration-[var(--sr-line)] underline-offset-4 hover:text-[var(--sr-ink)]"

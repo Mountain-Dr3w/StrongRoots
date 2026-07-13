@@ -9,13 +9,25 @@ import { SiteShell } from "@/components/site/SiteShell";
 import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
 
 const HERO_PANES = [
-  { label: "01 · program", src: "/stock/hero-lift.jpg" },
-  { label: "02 · consult", src: "/stock/trainer.jpg" },
-  { label: "03 · nourish", src: "/stock/nutrition.jpg" },
+  {
+    label: "01 · prepare",
+    src: "/editorial/barbell-setup.jpg",
+    alt: "Hands loading worn iron plates onto a barbell",
+  },
+  {
+    label: "02 · review",
+    src: "/editorial/coaching-review.jpg",
+    alt: "A coach reviewing exercise footage beside a training notebook",
+  },
+  {
+    label: "03 · record",
+    src: "/editorial/training-log.jpg",
+    alt: "A paper training log beside a barbell and chalk",
+  },
 ];
 
 const SAMPLE_BLOCK: BlockReceiptData = {
-  clientInitial: "M.R.",
+  clientInitial: "Sample",
   programName: "Built to Last",
   programNumber: "01",
   dateRange: "Jan 8 to Apr 2",
@@ -35,33 +47,25 @@ const SAMPLE_BLOCK: BlockReceiptData = {
 const PILLARS = [
   {
     eyebrow: "Programs",
-    title: "Plans, on demand",
+    title: "Train from a complete plan.",
     body:
-      "Eight to sixteen-week programs. Full PDFs and video demonstrations. Train on your schedule.",
+      "Choose an 8-, 12-, or 16-week block with clear sessions, exercise demonstrations, and lifetime access. You set the schedule; the progression is already mapped.",
     href: "/shop?type=plan",
-    cta: "Browse plans",
-    label: "rack work",
-    src: "/stock/plan-rack.jpg",
+    cta: "See programs",
+    label: "program · prepare",
+    alt: "Hands loading worn iron plates onto a barbell",
+    src: "/editorial/barbell-setup.jpg",
   },
   {
-    eyebrow: "Consulting",
-    title: "Work with Ashlyn",
+    eyebrow: "1:1 coaching",
+    title: "Get programming that moves with you.",
     body:
-      "Monthly 1:1 consulting in three tiers. Weekly video check-ins, form review, and programs built to match your training block.",
+      "Work with Ashlyn month to month on your training block, form, and recovery. Selected tiers include practical nutrition guidance.",
     href: "/shop?type=consulting",
-    cta: "See tiers",
-    label: "check-in",
-    src: "/stock/trainer.jpg",
-  },
-  {
-    eyebrow: "Nutrition",
-    title: "Nutrition, built in",
-    body:
-      "Macro targets and food frameworks included with consulting.",
-    href: "/shop?type=consulting",
-    cta: "Book intake",
-    label: "plate",
-    src: "/stock/nutrition.jpg",
+    cta: "Compare coaching",
+    label: "coaching · review",
+    alt: "A coach reviewing exercise footage beside a training notebook",
+    src: "/editorial/coaching-review.jpg",
   },
 ];
 
@@ -77,6 +81,7 @@ export default function Home() {
                 key={pane.label}
                 label={pane.label}
                 src={pane.src}
+                alt={pane.alt}
                 aspect={false}
                 className="h-full"
                 priority={idx === 0}
@@ -86,22 +91,23 @@ export default function Home() {
 
           <div className="relative md:-mt-24 mt-6">
             <div className="bg-[var(--sr-bg)] md:pt-8 md:pr-10 md:pb-8 py-6 max-w-2xl md:border-r md:border-t border-[var(--sr-line-soft)]">
-              <Eyebrow>Online training</Eyebrow>
+              <Eyebrow>Strength for the long arc</Eyebrow>
               <h1 className="mt-4 font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] sm:text-[64px] md:text-[72px] leading-[0.98] tracking-[-0.02em] text-balance">
-                Strength training that sticks.
+                Build strength you can keep.
               </h1>
               <p className="mt-6 text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-lg">
-                Structured programs and 1:1 consulting with Ashlyn.
+                Follow a complete program on your own, or work with Ashlyn for
+                programming, form review, and ongoing adjustments.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Link href="/shop?type=plan">
                   <Button variant="primary" size="lg">
-                    Browse plans
+                    Find your program
                   </Button>
                 </Link>
                 <Link href="/shop?type=consulting">
                   <Button variant="secondary" size="lg">
-                    Book a call
+                    Explore coaching
                   </Button>
                 </Link>
               </div>
@@ -110,21 +116,22 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── Three pillars ──────────────────────────────────────── */}
+      {/* ── Two ways to train ──────────────────────────────────── */}
       <section className="px-6 md:px-10 pb-24 md:pb-32">
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
           <SectionHeading
-            eyebrow="What we offer"
-            title="What's on offer."
-            subtitle="Programs, consulting, and nutrition. Pick one or stack them."
+            eyebrow="Choose your level of support"
+            title="Two ways to train."
+            subtitle="Start with a complete strength program, or add direct coaching when you want the work reviewed and adjusted with you."
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {PILLARS.map((pillar) => (
               <Card key={pillar.eyebrow} className="flex flex-col">
                 <CardImage>
                   <StripedPlaceholder
                     label={pillar.label}
                     src={pillar.src}
+                    alt={pillar.alt}
                     aspect={false}
                     className="h-full"
                   />
@@ -162,9 +169,9 @@ export default function Home() {
       <section className="px-6 md:px-10 pb-24 md:pb-32">
         <div className="max-w-6xl mx-auto flex flex-col gap-10">
           <SectionHeading
-            eyebrow="Sample block"
-            title="Twelve-week training block."
-            subtitle="An illustrative sample block. Real client numbers will replace this once one opts in to share."
+            eyebrow="How progress is reviewed"
+            title="Look at the whole block, not one workout."
+            subtitle="This example shows how Strong Roots reviews consistency, missed work, and useful load changes. It is sample data, not a client result."
             action={
               <Link href="/shop?type=plan">
                 <Button variant="tertiary" size="sm">

@@ -1,12 +1,12 @@
 {
   "name": "StrongRoots",
   "short_name": "StrongRoots",
-  "description": "Train with Ashlyn.",
+  "description": "Sustainable strength programs and 1:1 coaching with Ashlyn.",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#ffffff",
-  "theme_color": "#0f172a",
+  "background_color": "#17150f",
+  "theme_color": "#17150f",
   "icons": [
     {
       "src": "/icons/icon.svg",

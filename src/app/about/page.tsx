@@ -6,7 +6,7 @@ import { StripedPlaceholder } from "@/components/site/StripedPlaceholder";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Ashlyn is an online personal trainer.",
+  description: "Meet Ashlyn and learn how Strong Roots approaches sustainable strength training.",
 };
 
 const personLd = {
@@ -20,19 +20,19 @@ const personLd = {
 
 const PRINCIPLES = [
   {
-    title: "Progress in blocks.",
+    title: "Start with a clear block.",
     body:
-      "Sessions check in along the way. Loads go up when you're ready, not because the calendar says so.",
+      "Every program has a defined stretch of work, a progression to follow, and a reason for what is in it.",
   },
   {
-    title: "Built week by week.",
+    title: "Adjust from evidence.",
     body:
-      "Consistent reps and weeks of training, most days. No before/after photos.",
+      "Sessions, loads, missed days, and form feedback tell us what to change. The calendar alone does not.",
   },
   {
-    title: "If a plan doesn't fit, we talk.",
+    title: "Keep training livable.",
     body:
-      "Consulting is a conversation. The 12-week program you bought is where we start, not where we're stuck.",
+      "The goal is consistent work you can return to. Coaching makes room for schedule changes, recovery, and the rest of your life.",
   },
 ];
 
@@ -45,16 +45,18 @@ export default function AboutPage() {
           <div>
             <Eyebrow>About</Eyebrow>
             <h1 className="mt-5 font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[48px] sm:text-[64px] md:text-[88px] leading-[0.98] tracking-[-0.025em] text-balance">
-              Ashlyn trains people online.
+              Training for the long arc.
             </h1>
             <p className="mt-8 text-[var(--sr-ink-soft)] text-[17px] leading-[var(--sr-lh-normal)] max-w-lg">
-              A coach who works mostly online and keeps a handful of 1:1 consulting slots
-              each week.
+              Strong Roots pairs structured strength work with the feedback that keeps it
+              useful. Programs stand on their own; coaching adds review, adjustment, and
+              direct conversation with Ashlyn.
             </p>
           </div>
           <StripedPlaceholder
-            label="portrait · ashlyn"
-            src="/stock/portrait.jpg"
+            label="method · review"
+            src="/editorial/coaching-review.jpg"
+            alt="A coach reviewing exercise footage beside a training notebook"
             aspect="4/5"
             className="w-full max-w-md md:ml-auto"
             priority

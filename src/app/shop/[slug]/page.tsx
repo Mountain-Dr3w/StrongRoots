@@ -80,17 +80,17 @@ const FAQ_ITEMS = [
   {
     question: "How long do I have access?",
     answer:
-      "Plans come with lifetime access to the content you purchase. Consulting sessions are scheduled for the time you book.",
+      "Programs come with lifetime access to the content you purchase. Coaching sessions are scheduled for the time you book.",
   },
   {
     question: "What's your refund policy?",
     answer:
-      "Full refund within 7 days for plans. Consulting sessions can be rescheduled up to 24 hours in advance.",
+      "Full refunds are available within 7 days for programs. Coaching sessions can be rescheduled up to 24 hours in advance.",
   },
   {
     question: "Do I need equipment?",
     answer:
-      "Plans indicate equipment requirements in the description. Most beginner plans require only bodyweight.",
+      "Each program lists its equipment requirements before purchase. Check the program details to make sure it fits the setup you use.",
   },
 ];
 
@@ -100,7 +100,7 @@ export default async function ProductDetailPage({ params }: { params: PageParams
   if (!data) notFound();
 
   const { product, plan, offering } = data;
-  const typeLabel = product.type === "plan" ? "Plan" : "Consulting";
+  const typeLabel = product.type === "plan" ? "Program" : "Coaching";
   const cadenceLabel = product.type === "plan" ? "One-time · lifetime" : "Monthly · recurring";
 
   return (
@@ -110,7 +110,16 @@ export default async function ProductDetailPage({ params }: { params: PageParams
           {/* Visual */}
           <StripedPlaceholder
             label={`${typeLabel.toLowerCase()} · ${product.slug}`}
-            src={product.type === "plan" ? "/stock/plan-rack.jpg" : "/stock/trainer.jpg"}
+            src={
+              product.type === "plan"
+                ? "/editorial/barbell-setup.jpg"
+                : "/editorial/coaching-review.jpg"
+            }
+            alt={
+              product.type === "plan"
+                ? "Hands loading worn iron plates onto a barbell"
+                : "A coach reviewing exercise footage beside a training notebook"
+            }
             aspect="4/5"
             className="w-full md:sticky md:top-28"
             priority
@@ -147,9 +156,9 @@ export default async function ProductDetailPage({ params }: { params: PageParams
               ) : null}
             </div>
 
-            {/* What's included */}
+            {/* Included materials and support */}
             <div className="flex flex-col gap-4">
-              <Eyebrow>What's included</Eyebrow>
+              <Eyebrow>Included</Eyebrow>
               <ul className="flex flex-col gap-3 text-[var(--sr-ink)] text-[15px] leading-[var(--sr-lh-relaxed)]">
                 {plan ? (
                   <>
@@ -199,7 +208,7 @@ export default async function ProductDetailPage({ params }: { params: PageParams
                 <form action={buyPlanAction}>
                   <input type="hidden" name="productId" value={product.id} />
                   <Button type="submit" variant="primary" size="lg">
-                    Begin program
+                    Get the program
                   </Button>
                 </form>
               ) : (
@@ -219,7 +228,7 @@ export default async function ProductDetailPage({ params }: { params: PageParams
           <div className="flex flex-col gap-4 mb-8">
             <Eyebrow>Questions</Eyebrow>
             <h2 className="font-[var(--sr-font-display)] font-normal text-[var(--sr-ink)] text-[36px] md:text-[44px] leading-[var(--sr-lh-snug)] tracking-[-0.01em]">
-              Before you buy.
+              A few practical details.
             </h2>
           </div>
           <FaqAccordion items={FAQ_ITEMS} />
