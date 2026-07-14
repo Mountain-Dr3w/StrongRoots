@@ -33,8 +33,11 @@ jobs:
         name: Compute image tag
         run: |
           SHA=$(echo ${{ github.sha }} | cut -c1-7)
-          IMAGE="ghcr.io/${{ github.repository_owner }}/strongroots:${SHA}"
+          OWNER=$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')
+          IMAGE="ghcr.io/${OWNER}/strongroots:${SHA}"
+          LATEST="ghcr.io/${OWNER}/strongroots:latest"
           echo "image=${IMAGE}" >> "$GITHUB_OUTPUT"
+          echo "latest=${LATEST}" >> "$GITHUB_OUTPUT"
 
       - name: Build + push
         uses: docker/build-push-action@v6
@@ -43,7 +46,7 @@ jobs:
           push: true
           tags: |
             ${{ steps.meta.outputs.image }}
-            ghcr.io/${{ github.repository_owner }}/strongroots:latest
+            ${{ steps.meta.outputs.latest }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
