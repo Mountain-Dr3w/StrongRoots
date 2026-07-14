@@ -50,19 +50,19 @@ jobs:
   trigger-velveteen:
     needs: build-and-push
     runs-on: ubuntu-latest
+    env:
+      VELVETEEN_WEBHOOK_URL: ${{ secrets.VELVETEEN_WEBHOOK_URL }}
+      VELVETEEN_TOKEN: ${{ secrets.VELVETEEN_TOKEN }}
+      IMAGE: ${{ needs.build-and-push.outputs.image }}
     steps:
       - name: Trigger Velveteen deploy
-        if: ${{ secrets.VELVETEEN_WEBHOOK_URL != '' }}
-        env:
-          VELVETEEN_WEBHOOK_URL: ${{ secrets.VELVETEEN_WEBHOOK_URL }}
-          VELVETEEN_TOKEN: ${{ secrets.VELVETEEN_TOKEN }}
-          IMAGE: ${{ needs.build-and-push.outputs.image }}
+        if: ${{ env.VELVETEEN_WEBHOOK_URL != '' && env.VELVETEEN_TOKEN != '' }}
         run: |
           curl -fsS -X POST "$VELVETEEN_WEBHOOK_URL" \
             -H "Authorization: Bearer $VELVETEEN_TOKEN" \
             -H "Content-Type: application/json" \
             -d "{\"image\":\"${IMAGE}\",\"project\":\"strongroots\"}"
-      - name: No Velveteen webhook configured
-        if: ${{ secrets.VELVETEEN_WEBHOOK_URL == '' }}
+      - name: Velveteen deployment unavailable
+        if: ${{ env.VELVETEEN_WEBHOOK_URL == '' || env.VELVETEEN_TOKEN == '' }}
         run: |
-          echo "::warning::VELVETEEN_WEBHOOK_URL secret is empty; skipping deploy trigger"
+          echo "::warning::Velveteen webhook URL or token is empty; skipping deploy trigger"
