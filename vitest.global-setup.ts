@@ -15,7 +15,7 @@ export default async function globalSetup() {
   await sql.unsafe("DROP SCHEMA public CASCADE; CREATE SCHEMA public;");
   await sql.end();
 
-  execSync("npx drizzle-kit push", {
+  execSync("npx drizzle-kit push --config drizzle.config.mjs", {
     stdio: "inherit",
     env: { ...process.env, DATABASE_URL: url },
   });

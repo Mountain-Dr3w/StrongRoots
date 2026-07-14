@@ -8,7 +8,7 @@ describe("seed", () => {
   beforeAll(async () => {
     await db.execute(sql`DROP SCHEMA public CASCADE; CREATE SCHEMA public;`);
     const { execSync } = await import("node:child_process");
-    execSync("npx drizzle-kit push", {
+    execSync("npx drizzle-kit push --config drizzle.config.mjs", {
       env: { ...process.env, DATABASE_URL: process.env.DATABASE_URL_TEST },
       stdio: "inherit",
     });

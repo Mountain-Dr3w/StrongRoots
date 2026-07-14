@@ -1,7 +1,11 @@
 # syntax=docker/dockerfile:1.7
 
+# ---------- base ----------
+FROM node:20-alpine AS base
+RUN apk update && apk upgrade --no-cache libssl3 libcrypto3
+
 # ---------- deps ----------
-FROM node:20-alpine AS deps
+FROM base AS deps
 WORKDIR /app
 RUN apk add --no-cache libc6-compat
 RUN npm install -g npm@11
@@ -9,7 +13,7 @@ COPY package.json package-lock.json ./
 RUN npm ci
 
 # ---------- builder ----------
-FROM node:20-alpine AS builder
+FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
@@ -18,7 +22,7 @@ ENV SKIP_ENV_VALIDATION=true
 RUN npm run build
 
 # ---------- runner ----------
-FROM node:20-alpine AS runner
+FROM base AS runner
 WORKDIR /app
 
 RUN apk add --no-cache tini \
